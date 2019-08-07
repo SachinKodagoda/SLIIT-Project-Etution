@@ -2,7 +2,7 @@
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
-define("DB_NAME", "survey");
+define("DB_NAME", "test");
 
 define('APPROOT', dirname(dirname(__FILE__)));
 // define('URLROOT', 'http://_ADD_ROOT_URL_');
