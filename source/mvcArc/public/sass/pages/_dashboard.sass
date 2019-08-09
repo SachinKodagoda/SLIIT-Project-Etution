@@ -1,0 +1,215 @@
+.rightBody
+    width: 100%
+    +LARGE
+        width: calc(100% - 230px)
+        float: right
+
+.dashboardItem
+    padding: 4px 10px
+    &_topic_dashboard
+        font-size: 24px
+        font-weight: 500
+    &_topic_version
+        font-size: 14px
+        font-weight: 500
+        margin-left: 10px
+    &_navigation
+        float: none
+        display: block
+        background-color: #d2d6de
+        padding: 4px 5px
+        margin-bottom: 10px
+        border-radius: 2px
+        +LARGE
+            padding: 8px 5px
+            margin-bottom: 0
+            background-color: transparent
+            float: right
+        & img
+            width: 12px
+            height: 12px
+            margin-right: 4px
+    &_navigation_greater
+        padding: 0 4px
+
+.items
+    &_infoBox
+        padding: 0 10px
+    &_infoBox_inner
+        min-height: 90px
+        background: #fff
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1)
+        border-radius: 2px
+    &_infoBox_inner_left
+        background-color: #00C0EF
+        flex-basis: 90px
+    &_infoBox_inner_right
+        background: green
+        flex-grow: 1
+        // Same flex: 1
+        overflow: hidden
+        +break_words
+
+.leftMenu
+    display: none
+    +LARGE
+        display: block
+        width: 230px
+        height: 1500px
+        background: #222D32
+        float: left
+
+// SEACH ITEM ---------------------------------
+.leftMenu_item_search
+    width: 100%
+    height: 46px
+.form_search
+    border-radius: 3px
+    border: 1px solid #374850
+    &_padding
+        padding: 10px
+    &_input
+        color: #ffffff
+        display: inline-block
+        background-color: #374850
+        border: 1px solid transparent
+        border-radius: 2px 0 0 2px
+        height: 35px
+        width: calc(100% - 35px)
+        padding-left: 12px
+        padding-top: 6px
+        padding-bottom: 6px
+        font-size: 14px
+        line-height: 1
+        float: left
+        outline: none
+        caret-color: #ccc
+        &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus,
+            -webkit-text-fill-color: #fff
+            border: 1px solid transparent
+            -webkit-text-fill-color: #fff
+            -webkit-box-shadow: 0 0 0px 1000px #374850 inset
+            transition: background-color 5000s ease-in-out 0s
+    &_btn
+        float: right
+        color: #999
+        border-radius: 0 2px 2px 0
+        background-color: #374850
+        border: 1px solid transparent
+        height: 35px
+        width: 35px
+        display: inline-block
+        font-weight: 400
+        text-align: center
+        vertical-align: middle
+        cursor: pointer
+        font-size: 14px
+        user-select: none
+        outline: none
+
+// NORMAL ITEM ---------------------------------
+.leftMenu_item
+    width: 100%
+    height: 46px
+    background-color: #1A2226
+    color: #8A989E
+    padding: 0 10px
+    text-align: left
+    line-height: 46px
+
+// ITEM SELECTED ---------------------------------
+.leftMenu_item_selected
+    width: 100%
+    height: 46px
+    background-color: #1E282C
+    color: #fff
+    padding: 0 10px
+    text-align: left
+    line-height: 46px
+    border-left: 3px solid #3C8DBC
+    cursor: pointer
+    &_icon
+        float: left
+        height: 46px
+        width: 18px
+
+    &_icon img
+        width: 12px
+        height: 12px
+
+    &_text
+        width: 180px
+        float: left
+        overflow: hidden
+
+    &_dropdown
+        float: right
+        height: 46px
+        width: 10px
+        position: relative
+
+    &_dropdown img
+        width: 10px
+        height: 10px
+
+// ITEM NOT SELECTED ---------------------------------
+.leftMenu_item_not_selected
+    width: 100%
+    height: 46px
+    background-color: #222D32
+    color: #B8C7CE
+    padding: 0 10px
+    text-align: left
+    line-height: 46px
+    cursor: pointer
+    &:hover
+        background-color: #1E282C
+        color: #fff
+    &_icon
+        float: left
+        height: 46px
+        width: 18px
+
+    &_icon img
+        width: 12px
+        height: 12px
+
+    &_text
+        width: 180px
+        float: left
+        overflow: hidden
+
+    &_dropdown
+        float: right
+        height: 46px
+        width: 10px
+        position: relative
+
+    &_dropdown img
+        width: 10px
+        height: 10px
+
+
+// ITEM PROFILE ---------------------------------
+.leftMenu_item_profile
+    background-color: #222D32
+    color: #fff
+    padding: 10px 4px
+    & img
+        width: 45px
+        height: 45px
+        border-radius: 50%
+        float: left
+    &_text
+        width: calc(100% - 45px)
+        padding-left: 8px
+        float: left
+    &_text_online
+        font-size: 12px
+    &_text_online_bulb
+        display: inline-block
+        width: 10px
+        height: 10px
+        background-color: #00A65A
+        border-radius: 100%
+        margin-right: 6px

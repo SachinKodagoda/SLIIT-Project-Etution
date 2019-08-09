@@ -5,7 +5,6 @@ define("DB_PASS", "");
 define("DB_NAME", "test");
 
 define('APPROOT', dirname(dirname(__FILE__)));
-// define('URLROOT', 'http://_ADD_ROOT_URL_');
 define('URLROOT', 'http://localhost:3000/mvcArc');
 define('SITENAME', 'MyMVC');
 define('APPVERSION', '1.0.0');

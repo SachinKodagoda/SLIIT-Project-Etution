@@ -12,13 +12,14 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
   <!-- Main css -->
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <title><?php echo SITENAME ?></title>
 </head>
 
 <?php
-  $location_home = URLROOT . "home";
-  $location_about = URLROOT . "about";
-  $location_contact = URLROOT . "contact";
+$location_home = URLROOT . "home";
+$location_about = URLROOT . "about";
+$location_contact = URLROOT . "contact";
 ?>
 
 <body>

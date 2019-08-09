@@ -1,5 +1,7 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <div>
+    <?php flash('register_success'); ?>
+    <?php flash('access_denied'); ?>
     <form action="<?php echo URLROOT; ?>/users/login" method="post" class="form">
         <div class="form_group">
             <label for="email" class="label">Email: <span class="important">*</span></label>
@@ -19,3 +21,11 @@
     </form>
 </div>
 <?php require APPROOT . '/views/includes/footer.php'; ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#msg-flash').delay(2000).fadeOut();
+    });
+    // setTimeout(function () {
+    //     document.getElementById('msg-flash').style.display='none';
+    // }, 3000);
+</script>

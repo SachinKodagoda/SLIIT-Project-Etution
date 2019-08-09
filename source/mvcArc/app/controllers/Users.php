@@ -131,7 +131,33 @@ class Users extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
-        redirect('pages/index');
+        $_SESSION['user_type'] = $user->userType;
+        switch ($user->userType) {
+            case 'member':
+                redirect('pages/index');
+                break;
+            case 'admin':
+                redirect('admin/index');
+                break;
+            case 'lecturer':
+                redirect('pages/index');
+                break;
+            case 'customer_agent':
+                redirect('pages/index');
+                break;
+            case 'advertiser_agent':
+                redirect('pages/index');
+                break;
+            case 'visitor':
+                redirect('pages/index');
+                break;
+            case 'developer':
+                redirect('pages/index');
+                break;
+            default:
+                redirect('pages/index');
+                break;
+        }
     }
 
     public function logout()
@@ -139,6 +165,7 @@ class Users extends Controller
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);
         unset($_SESSION['user_name']);
+        unset($_SESSION['user_type']);
         session_destroy();
         redirect('users/login');
     }

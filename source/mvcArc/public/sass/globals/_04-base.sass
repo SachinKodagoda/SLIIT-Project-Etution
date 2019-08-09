@@ -1,0 +1,275 @@
+// Responsive Commons---------------------------------------------------
+
+.row
+    &:after,
+    &:before
+        content: ""
+        display: table
+        clear: both
+
+.col
+    float: left
+    width: 100%
+    height: auto
+
+.s1
+	width: 8.33333%
+
+.s2
+	width: 16.66667%
+
+.s3
+	width: 25%
+
+.s4
+	width: 33.33333%
+
+.s5
+	width: 41.66667%
+
+.s6
+	width: 50%
+
+.s7
+	width: 58.33333%
+
+.s8
+	width: 66.66667%
+
+.s9
+	width: 75%
+
+.s10
+	width: 83.33333%
+
+.s11
+	width: 91.66667%
+
+.s12
+	width: 100%
+
++MEDIUM
+	.m1
+		width: 8.33333%
+	.m2
+		width: 16.66667%
+	.m3
+		width: 25%
+	.m4
+		width: 33.33333%
+	.m5
+		width: 41.66667%
+	.m6
+		width: 50%
+	.m7
+		width: 58.33333%
+	.m8
+		width: 66.66667%
+	.m9
+		width: 75%
+	.m10
+		width: 83.33333%
+	.m11
+		width: 91.66667%
+	.m12
+		width: 100%
+
+
++LARGE
+	.l1
+		width: 8.33333%
+	.l2
+		width: 16.66667%
+	.l3
+		width: 25%
+	.l4
+		width: 33.33333%
+	.l5
+		width: 41.66667%
+	.l6
+		width: 50%
+	.l7
+		width: 58.33333%
+	.l8
+		width: 66.66667%
+	.l9
+		width: 75%
+	.l10
+		width: 83.33333%
+	.l11
+		width: 91.66667%
+	.l12
+		width: 100%
+
++XLARGE
+	.xl1
+		width: 8.33333%
+	.xl2
+		width: 16.66667%
+	.xl3
+		width: 25%
+	.xl4
+		width: 33.33333%
+	.xl5
+		width: 41.66667%
+	.xl6
+		width: 50%
+	.xl7
+		width: 58.33333%
+	.xl8
+		width: 66.66667%
+	.xl9
+		width: 75%
+	.xl10
+		width: 83.33333%
+	.xl11
+		width: 91.66667%
+	.xl12
+		width: 100%
+
++XXLARGE
+	.xxl1
+		width: 8.33333%
+	.xxl2
+		width: 16.66667%
+	.xxl3
+		width: 25%
+	.xxl4
+		width: 33.33333%
+	.xxl5
+		width: 41.66667%
+	.xxl6
+		width: 50%
+	.xxl7
+		width: 58.33333%
+	.xxl8
+		width: 66.66667%
+	.xxl9
+		width: 75%
+	.xxl10
+		width: 83.33333%
+	.xxl11
+		width: 91.66667%
+	.xxl12
+		width: 100%
+
++XXXLARGE
+	.xxxl1
+		width: 8.33333%
+	.xxxl2
+		width: 16.66667%
+	.xxxl3
+		width: 25%
+	.xxxl4
+		width: 33.33333%
+	.xxxl5
+		width: 41.66667%
+	.xxxl6
+		width: 50%
+	.xxxl7
+		width: 58.33333%
+	.xxxl8
+		width: 66.66667%
+	.xxxl9
+		width: 75%
+	.xxxl10
+		width: 83.33333%
+	.xxxl11
+		width: 91.66667%
+	.xxxl12
+		width: 100%
+
+.clearfix::after
+    content: ""
+    clear: both
+    display: table
+
+.flex
+    display: flex
+    // Flex has following default behaviors
+    // flex-direction: row
+    // flex-wrap: nowrap (So items can come out of the parent container)
+    // justify-content: flex-start
+    // align-items: stretch
+
+// Direction ---------------------------
+.fx_row_reverse
+    flex-direction: row-reverse
+
+.fx_column
+    flex-direction: column
+
+.fx_column_reverse
+    flex-direction: column-reverse
+
+// Wrap ---------------------------
+.fx_wrap
+    flex-wrap: wrap
+
+.fx_wrapReverse
+    flex-wrap: wrap-reverse
+
+// Align Items Horizontally ---------------------------
+.fx_alignRight
+    justify-content: flex-end
+
+.fx_alignCenter
+    justify-content: center
+
+.fx_alignCenterSpaceArrond
+    justify-content: space-around
+
+.fx_alignCenterSpaceBetween
+    justify-content: space-between
+
+// Align Items Vertically ---------------------------
+.fx_alignTop
+    align-items: flex-start
+
+.fx_alignMiddle
+    align-items: center
+
+.fx_alignBottom
+    align-items: flex-end
+
+.fx_alignFontBaseLineToMiddle
+    align-items: baseline
+
+// Align and Wrap ---------------------------
+.fx_alignTopWrap
+    flex-wrap: wrap
+    align-items: flex-start
+
+.fx_alignMiddleWrap
+    flex-wrap: wrap
+    align-content: center
+
+.fx_alignBottomWrap
+    flex-wrap: wrap
+    align-items: flex-end
+
+.fx_perfectCentering
+    justify-content: center
+    align-items: center
+
+.fx_alignMiddleSpaceArrondWrap
+    flex-wrap: wrap
+    align-content: space-around
+
+.fx_alignMiddleSpaceBetweenWrap
+    flex-wrap: wrap
+    align-content: space-between
+
+// Add Styles to Flex children---------------------------
+
+    // order: 0 (Default)
+
+    // flex-grow: 1 (Default | Grow than others)
+    // flex-shrink: 0 (Default | Srink than others)
+    // flex-basis: 200px (not Default)
+    // flex: 0 0 200px (growable shrinkable initialLength)
+
+    // (Following will over ride flex stretch and give the custom alignment to that item)
+    // align-self: center
+    // align-self: flex-start
+    // align-self: flex-end
