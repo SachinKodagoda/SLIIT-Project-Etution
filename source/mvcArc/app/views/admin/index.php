@@ -93,40 +93,51 @@
             </div>
         </div>
         <div>
+            <!-- Advanced Tables -->
+            <div class="panel">
+                <div class="panel-head">
+                    Authors Listing
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Author</th>
+                                    <th>Creation Date</th>
+                                    <th>Updation Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX">
+                                    <td class="center">1</td>
+                                    <td class="center">Stephen Hawking</td>
+                                    <td class="center">2019-05-10 00:11:01</td>
+                                    <td class="center">2019-05-15 11:35:35</td>
+                                    <td class="center">
 
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-examplexx">
-                        <thead>
-                            <tr>
-                                <th>Book Name</th>
-                                <th>ISBN </th>
-                                <th>Issued Date</th>
-                                <th>Return Date</th>
-                                <th>Fine in (USD)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                    <tr class="odd gradeX">
-                                        <td class="center">dfdfdf</td>
-                                        <td class="center">dfdfdf</td>
-                                        <td class="center">dfdf</td>
-                                        <td class="center">dfdsgdgds</td>
-                                        <td class="center">fdfdfdfdf</td>
+                                        <a href="edit-author.php?athrid=1">
+                                            <button class="table_btn btn_blue">
+                                                <i class="fa fa-edit "></i> Edit
+                                            </button>
+                                            </a>
+                                        <a href="manage-authors.php?del=1" onclick="" >
+                                            <button class="table_btn btn_red">
+                                                <i class="fa fa-pencil"></i> Delete
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td class="center">dfdfdf</td>
-                                        <td class="center">dfdfdf</td>
-                                        <td class="center">dfdf</td>
-                                        <td class="center">dfdsgdgds</td>
-                                        <td class="center">fdfdfdfdf</td>
-
-                                    </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
+            <!--End Advanced Tables -->
+
         </div>
     </div>
 </div>
