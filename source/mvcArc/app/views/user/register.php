@@ -1,6 +1,6 @@
-<?php require APPROOT . '/views/includes/header.php'; ?>
+<?php require APPROOT . '/views/_includes/_header.php'; ?>
 <div>
-    <form action="<?php echo URLROOT; ?>/users/register" method="post" class="form">
+    <form action="<?php echo URLROOT; ?>/user/register" method="post" class="form">
         <div class="form_group">
             <label for="name" class="label">Name: <span class="important">*</span></label>
             <input type="text" autocomplete="off" name="name" class="form_control <?php echo (!empty($data['name_err'])) ? 'error_input' : ''; ?>" value="<?php echo $data['name']; ?>">
@@ -24,8 +24,8 @@
 
         <div>
             <input type="submit" value="Register" class="form_submit_btn"><br />
-            <div class="form_login_btn_cover">Do you have an account? <a href="<?php echo URLROOT; ?>/users/login" class="form_login_btn">Login</a></div>
+            <div class="form_login_btn_cover">Do you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/login')" class="form_login_btn">Login</span></div>
         </div>
     </form>
 </div>
-<?php require APPROOT . '/views/includes/footer.php'; ?>
+<?php require APPROOT . '/views/_includes/_footer.php'; ?>

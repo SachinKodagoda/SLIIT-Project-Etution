@@ -1,5 +1,5 @@
 <?php
-class User
+class UsersModel
 {
     private $db;
 

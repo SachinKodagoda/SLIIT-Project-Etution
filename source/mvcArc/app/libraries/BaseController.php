@@ -1,5 +1,5 @@
 <?php
-class Controller
+class BaseController
 {
     public function model($model)
     {

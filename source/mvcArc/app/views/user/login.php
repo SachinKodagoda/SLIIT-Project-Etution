@@ -1,8 +1,8 @@
-<?php require APPROOT . '/views/includes/header.php'; ?>
+<?php require APPROOT . '/views/_includes/_header.php'; ?>
 <div>
     <?php flash('register_success'); ?>
     <?php flash('access_denied'); ?>
-    <form action="<?php echo URLROOT; ?>/users/login" method="post" class="form">
+    <form action="<?php echo URLROOT; ?>/user/login" method="post" class="form">
         <div class="form_group">
             <label for="email" class="label">Email: <span class="important">*</span></label>
             <input type="email" autocomplete="off" name="email" class="form_control <?php echo (!empty($data['email_err'])) ? 'error_input' : ''; ?>" value="<?php echo $data['email']; ?>">
@@ -16,16 +16,8 @@
 
         <div>
             <input type="submit" value="Login" class="form_submit_btn"><br />
-            <div class="form_login_btn_cover">Don't you have an account? <a href="<?php echo URLROOT; ?>/users/register" class="form_login_btn">Register</a></div>
+            <div class="form_login_btn_cover">Don't you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/register')" class="form_login_btn">Register</span></div>
         </div>
     </form>
 </div>
-<?php require APPROOT . '/views/includes/footer.php'; ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#msg-flash').delay(2000).fadeOut();
-    });
-    // setTimeout(function () {
-    //     document.getElementById('msg-flash').style.display='none';
-    // }, 3000);
-</script>
+<?php require APPROOT . '/views/_includes/_footer.php'; ?>

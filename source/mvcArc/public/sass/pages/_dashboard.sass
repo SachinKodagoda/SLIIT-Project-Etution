@@ -121,13 +121,15 @@
 .leftMenu_item_selected
     width: 100%
     height: 46px
-    background-color: #1E282C
-    color: #fff
     padding: 0 10px
     text-align: left
     line-height: 46px
-    border-left: 3px solid #3C8DBC
+    background-color: #222D32
+    color: #B8C7CE
     cursor: pointer
+    &:hover
+        color: #fff
+
     &_icon
         float: left
         height: 46px
@@ -153,41 +155,14 @@
         height: 10px
 
 // ITEM NOT SELECTED ---------------------------------
-.leftMenu_item_not_selected
-    width: 100%
-    height: 46px
-    background-color: #222D32
-    color: #B8C7CE
-    padding: 0 10px
-    text-align: left
-    line-height: 46px
-    cursor: pointer
-    &:hover
+.leftMenu_item_selected
+    &.active
         background-color: #1E282C
         color: #fff
-    &_icon
-        float: left
-        height: 46px
-        width: 18px
+        border-left: 3px solid #3C8DBC
 
-    &_icon img
-        width: 12px
-        height: 12px
 
-    &_text
-        width: 180px
-        float: left
-        overflow: hidden
 
-    &_dropdown
-        float: right
-        height: 46px
-        width: 10px
-        position: relative
-
-    &_dropdown img
-        width: 10px
-        height: 10px
 
 
 // ITEM PROFILE ---------------------------------

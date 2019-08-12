@@ -10,29 +10,32 @@ const { src, dest, watch, series, parallel } = require('gulp'),
   replace = require('gulp-replace'),
   images = require('gulp-imagemin');
 
-const outputBaseDir        = '../htdocs/mvcArc/';
-const outputBaseDir_app    = outputBaseDir + '/app/';
+const outputBaseDir = '../htdocs/mvcArc/';
+const outputBaseDir_app = outputBaseDir + '/app/';
 const outputBaseDir_public = outputBaseDir + '/public/';
 
-const inputBaseDir         = './source/mvcArc';
-const inputBaseDir_app     = inputBaseDir + '/app';
-const inputBaseDir_public  = inputBaseDir + '/public';
+const inputBaseDir = './source/mvcArc';
+const inputBaseDir_app = inputBaseDir + '/app';
+const inputBaseDir_public = inputBaseDir + '/public';
 
 // FILE PATHS
 const files = {
   // Input file paths
-  sassPath    : inputBaseDir_public + '/sass/**/*.sass',
-  jsPath      : inputBaseDir_public + '/js/**/*.js'    ,
-  vendorPath  : inputBaseDir_public + '/vendor/**/*'   ,
-  imgPath     : inputBaseDir_public + '/img/**/*'      ,
-  phpPath     : inputBaseDir        + '/**/*.php'      ,
-  htaccessPath: inputBaseDir        + '/**/.htaccess'  ,
-  
+  sassPath: inputBaseDir_public + '/sass/**/*.sass',
+  jsCommonPath: inputBaseDir_public + '/js/common/**/*.js',
+  jsPagesPath: inputBaseDir_public + '/js/pages/**/*.js',
+  jsPath: inputBaseDir_public + '/js',
+  vendorPath: inputBaseDir_public + '/vendor/**/*',
+  imgPath: inputBaseDir_public + '/img/**/*',
+  phpPath: inputBaseDir + '/**/*.php',
+  htaccessPath: inputBaseDir + '/**/.htaccess',
+
   // Output file paths
-  sassDest    : outputBaseDir_public + '/css'     ,
-  jsDest      : outputBaseDir_public + '/js'      ,
-  vendorDest  : outputBaseDir_public + '/vendor'  ,
-  imgDest     : outputBaseDir_public + '/img'     ,
+  sassDest: outputBaseDir_public + '/css',
+  jsCommonDest: outputBaseDir_public + '/js/common',
+  jsPagesDest: outputBaseDir_public + '/js/pages',
+  vendorDest: outputBaseDir_public + '/vendor',
+  imgDest: outputBaseDir_public + '/img',
 }
 
 // --------------------------------------------------------------
@@ -56,14 +59,22 @@ function imgTask() {
     .pipe(dest(files.imgDest));
 }
 
-// COMPILE JS
-function jsTask() {
+// JS PAGES TASK
+function jsPagesTask() {
   return src([
-    files.jsPath
+    files.jsPagesPath
   ])
-    .pipe(concat('script.js'))
+    .pipe(dest(files.jsPagesDest));
+}
+
+// JS COMMON TASK
+function jsCommonTask() {
+  return src([
+    files.jsCommonPath
+  ])
+    .pipe(concat('common.js'))
     .pipe(uglify())
-    .pipe(dest(files.jsDest));
+    .pipe(dest(files.jsCommonDest));
 }
 
 // COMPILE PHP
@@ -113,7 +124,7 @@ function watchTask() {
     // server: {
     //   baseDir: outputBaseDir
     // }
-	//watch: true,
+    //watch: true,
     injectChanges: true,
     proxy: '127.0.0.1:8080',
     watchOptions: {
@@ -122,13 +133,13 @@ function watchTask() {
     notify: false
   });
   watch(files.sassPath, sassTask);
-  watch(files.jsPath, series(jsTask, reloadingTask));
+  watch(files.jsPath, series(jsCommonTask, jsPagesTask, reloadingTask));
   watch(files.phpPath, series(phpTask, reloadingTask));
   watch(files.vendorPath, series(vendorTask, reloadingTask));
   watch(files.htaccessPath, series(htaccessTask, reloadingTask));
 }
 
 exports.default = series(
-  parallel(sassTask, jsTask, phpTask, vendorTask, imgTask , htaccessTask),
+  parallel(sassTask, jsCommonTask, jsPagesTask, phpTask, vendorTask, imgTask, htaccessTask),
   watchTask
 );

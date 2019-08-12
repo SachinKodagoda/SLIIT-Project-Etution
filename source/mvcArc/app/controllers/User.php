@@ -1,9 +1,9 @@
 <?php
-class Users extends Controller
+class User extends BaseController
 {
     public function __construct()
     {
-        $this->userModel = $this->model('User');
+        $this->userModel = $this->model('UsersModel');
     }
 
     public function register()
@@ -54,12 +54,12 @@ class Users extends Controller
 
                 if ($this->userModel->register($data)) {
                     flash('register_success', 'You are registered and can log in');
-                    redirect('users/login');
+                    redirect('user/login');
                 } else {
                     die('Something went wrong');
                 }
             } else {
-                $this->view('users/register', $data);
+                $this->view('user/register', $data);
             }
         } else {
             $data = [
@@ -73,7 +73,7 @@ class Users extends Controller
                 'confirm_password_err' => ''
             ];
 
-            $this->view('users/register', $data);
+            $this->view('user/register', $data);
         }
     }
 
@@ -109,10 +109,10 @@ class Users extends Controller
                 } else {
                     $data['password_err'] = 'Password incorrect';
 
-                    $this->view('users/login', $data);
+                    $this->view('user/login', $data);
                 }
             } else {
-                $this->view('users/login', $data);
+                $this->view('user/login', $data);
             }
         } else {
             $data = [
@@ -122,7 +122,7 @@ class Users extends Controller
                 'password_err' => '',
             ];
 
-            $this->view('users/login', $data);
+            $this->view('user/login', $data);
         }
     }
 
@@ -134,28 +134,28 @@ class Users extends Controller
         $_SESSION['user_type'] = $user->userType;
         switch ($user->userType) {
             case 'member':
-                redirect('pages/index');
+                redirect('page/index');
                 break;
             case 'admin':
-                redirect('admin/index');
+                redirect('admin');
                 break;
             case 'lecturer':
-                redirect('pages/index');
+                redirect('page/index');
                 break;
             case 'customer_agent':
-                redirect('pages/index');
+                redirect('page/index');
                 break;
             case 'advertiser_agent':
-                redirect('pages/index');
+                redirect('page/index');
                 break;
             case 'visitor':
-                redirect('pages/index');
+                redirect('page/index');
                 break;
             case 'developer':
-                redirect('pages/index');
+                redirect('page/index');
                 break;
             default:
-                redirect('pages/index');
+                redirect('page/index');
                 break;
         }
     }
@@ -167,7 +167,7 @@ class Users extends Controller
         unset($_SESSION['user_name']);
         unset($_SESSION['user_type']);
         session_destroy();
-        redirect('users/login');
+        redirect('user/login');
     }
 
     public function isLoggedIn()

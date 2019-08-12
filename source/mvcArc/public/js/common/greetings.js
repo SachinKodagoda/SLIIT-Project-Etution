@@ -1,8 +1,3 @@
-function navFunction(loc){
-    console.log(loc);
-    location.replace(loc);
-};
-
 var dateOBJ = new Date();
 var hours = dateOBJ.getHours();
 var minutes = dateOBJ.getMinutes();
