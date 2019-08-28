@@ -11,9 +11,13 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
   <!-- Main css -->
+
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/vendor/css/owl.carousel.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/vendor/css/owl.theme.default.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/style.css" />
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
   <title><?php echo SITENAME ?></title>
   <script src="<?php echo URLROOT ?>/vendor/js/jquery-3.4.1.min.js"></script>
 </head>
+
 <body>
