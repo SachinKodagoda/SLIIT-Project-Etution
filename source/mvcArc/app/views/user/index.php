@@ -66,7 +66,18 @@
     </div>
 
     <div class="members">
+        <div class="members_head">
+            <div class="members_head_topic">Support Members</div>
+            <div class="members_head_subtopic">
+                Fully experienced and top level support members for quality customer service.
+            </div>
+        </div>
+        <div class="members_body">
 
+        </div>
+        <div class="members_desc">
+
+        </div>
     </div>
     <div class="about_us">
 

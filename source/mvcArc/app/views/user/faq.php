@@ -1,5 +1,5 @@
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/visitor.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/user.css" />
 </head>
 <body>
 <?php require APPROOT . '/views/_includes/_header.php'; ?>

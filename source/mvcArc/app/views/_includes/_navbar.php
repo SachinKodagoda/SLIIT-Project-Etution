@@ -1,8 +1,8 @@
 <div class="topnav clearfix" id="myTopnav">
-    <div class="topnav_item active" onclick="navFunction('<?php echo URLROOT ?>')">Home</div>
-    <div class="topnav_item " onclick="navFunction('<?php echo URLROOT ?>/visitor/tutorials')">Tutorials</div>
-    <div class="topnav_item " onclick="navFunction('<?php echo URLROOT ?>/visitor/faq')">FAQ</div>
-    <div class="topnav_item " onclick="navFunction('<?php echo URLROOT ?>/visitor/contact')">Contact</div>
+    <div class="topnav_item active" onclick="navFunction('<?php echo URLROOT ?>/user')">Home</div>
+    <div class="topnav_item " onclick="navFunction('<?php echo URLROOT ?>/user/tutorials')">Tutorials</div>
+    <div class="topnav_item " onclick="navFunction('<?php echo URLROOT ?>/user/faq')">FAQ</div>
+    <div class="topnav_item " onclick="navFunction('<?php echo URLROOT ?>/user/contact')">Contact</div>
     
     <?php if (isset($_SESSION['user_id'])) : ?>
         <div class="topnav_item float-right" onclick="navFunction('<?php echo URLROOT ?>/user/logout')">Logout</div>

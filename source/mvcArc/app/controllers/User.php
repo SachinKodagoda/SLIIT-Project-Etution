@@ -6,19 +6,53 @@ class User extends BaseController
         $this->userModel = $this->model('UsersModel');
     }
 
-    public function index()
+
+
+    public function isAuthorized($view, $data)
     {
-        if (!isset($_SESSION['user_id']) || ($_SESSION['user_type'] != 'member')) {
+        if (!isset($_SESSION['user_id']) || !(($_SESSION['user_type'] == 'member') || ($_SESSION['user_type'] == 'admin'))) {
             flash('access_denied', 'You do not have <b>Access rights</b>', 'alert alert-danger');
             redirect('user/login');
         } else {
-            $data = [
-                'title' => 'WDA',
-            ];
-
-            $this->view('user/index', $data);
+            $this->view($view, $data);
         }
     }
+
+    public function index()
+    {
+
+        $data = [
+            'title' => 'WDA',
+        ];
+        $this->isAuthorized('user/index', $data);
+    }
+
+
+    public function contact()
+    {
+        $data = [
+            'title' => 'WDA',
+        ];
+        $this->isAuthorized('user/contact', $data);
+    }
+
+    public function faq()
+    {
+        $data = [
+            'title' => 'WDA',
+        ];
+        $this->isAuthorized('user/faq', $data);
+    }
+
+    public function tutorials()
+    {
+        $data = [
+            'title' => 'WDA',
+        ];
+        $this->isAuthorized('user/tutorials', $data);
+    }
+
+
 
     public function register()
     {

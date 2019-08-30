@@ -3,6 +3,13 @@ class Visitor extends BaseController
 {
     public function __construct()
     {
+        if (isset($_SESSION['user_id']) && ($_SESSION['user_type'] == 'member')) {
+            // $data = [
+            //     'title' => 'WDA',
+            // ];
+            // $this->view('user/index', $data);
+            redirect('user');
+        }
     }
 
     public function index()
