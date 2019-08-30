@@ -6,6 +6,20 @@ class User extends BaseController
         $this->userModel = $this->model('UsersModel');
     }
 
+    public function index()
+    {
+        if (!isset($_SESSION['user_id']) || ($_SESSION['user_type'] != 'member')) {
+            flash('access_denied', 'You do not have <b>Access rights</b>', 'alert alert-danger');
+            redirect('user/login');
+        } else {
+            $data = [
+                'title' => 'WDA',
+            ];
+
+            $this->view('user/index', $data);
+        }
+    }
+
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -134,28 +148,28 @@ class User extends BaseController
         $_SESSION['user_type'] = $user->userType;
         switch ($user->userType) {
             case 'member':
-                redirect('page/index');
+                redirect('user/index');
                 break;
             case 'admin':
                 redirect('admin');
                 break;
             case 'lecturer':
-                redirect('page/index');
+                redirect('user/index');
                 break;
             case 'customer_agent':
-                redirect('page/index');
+                redirect('user/index');
                 break;
             case 'advertiser_agent':
-                redirect('page/index');
+                redirect('user/index');
                 break;
             case 'visitor':
-                redirect('page/index');
+                redirect('user/index');
                 break;
             case 'developer':
-                redirect('page/index');
+                redirect('user/index');
                 break;
             default:
-                redirect('page/index');
+                redirect('user/index');
                 break;
         }
     }

@@ -1,5 +1,4 @@
-  <script type="text/javascript" src="<?php echo URLROOT ?>/js/common/common.js"></script>
+    <script type="text/javascript" src="<?php echo URLROOT ?>/js/common/common.js"></script>
+    </body>
 
-  </body>
-
-  </html>
+    </html>

@@ -1,7 +1,12 @@
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/user.css" />
+</head>
+<body>
 <?php require APPROOT . '/views/_includes/_header.php'; ?>
 <div>
     <?php flash('register_success'); ?>
     <?php flash('access_denied'); ?>
+    <?php flash('please_login'); ?>
     <form action="<?php echo URLROOT; ?>/user/login" method="post" class="form">
         <div class="form_group">
             <label for="email" class="label">Email: <span class="important">*</span></label>
