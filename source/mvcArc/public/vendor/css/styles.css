@@ -1,0 +1,149 @@
+body {
+
+  background-color: #F2F3F4;
+
+}
+
+h1 {
+  font-family: Amazone BT;
+  font-size: 60px;
+  font-weight: bold;
+  color: red;
+  position: relative;
+
+}
+
+h2 {
+  font-family: Belwe Cn BT;
+  font-size: 50px;
+  color: purple;
+}
+
+h3 {
+  font-family: ArnoldBoeD;
+  background-color: rgba(192, 192, 192, 0.3);
+  font-size: 30px;
+  font-weight: italic;
+  color: #0400B4;
+  position: center;
+}
+
+.line {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.column.middle {
+  background-color: #F5F5DC;
+  width: 1100px;
+  border: 5px solid black;
+  padding: 20px;
+  margin: 0px;
+
+}
+
+
+
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+
+
+.container .btn {
+  position: absolute;
+  left: 400px;
+  bottom: 200px;
+  width: 300px;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+
+}
+
+.container .btn:hover {
+  background-color: green;
+  color: black;
+}
+
+.edit1 {
+  width: 28%;
+
+}
+
+a.question {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+a.question:hover {
+  background-color: black;
+  color: white;
+
+}
+
+.search-all {
+  position: absolute;
+  right: 0px;
+  top: 160px;
+
+}
+
+.search-text {
+  width: 250px;
+  height: 24px;
+
+}
+
+.search-button {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+
+}
+
+.gif {
+  height: 340px;
+  width: 400px;
+
+}
+
+.advertise1 {
+  position: absolute;
+  right: 0px;
+  top: 240px;
+  width: 360px;
+  height: 500px;
+
+}
+
+.advertise2 {
+  position: absolute;
+  right: 0px;
+  top: 740px;
+  width: 360px;
+  height: 640px;
+
+}
+
+.body-logo {
+  position: absolute;
+  right: 100px;
+  top: 50px;
+  width: 200px;
+  height: 100px;
+
+}

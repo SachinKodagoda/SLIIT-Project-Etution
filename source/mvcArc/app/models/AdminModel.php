@@ -24,4 +24,12 @@ class AdminModel
             return false;
         }
     }
+
+    public function getAuser($id)
+    {
+        $this->db->query("SELECT *
+                        FROM users WHERE userType='member' && id= :id ORDER BY id");
+        $this->db->bind(':id', $id);
+        return $this->db->single();
+    }
 }

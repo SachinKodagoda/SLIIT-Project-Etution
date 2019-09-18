@@ -6,13 +6,17 @@ class Database
     private $pass = DB_PASS;
     private $dbname = DB_NAME;
 
+    // Database Handler
     private $dbh;
+    // Statement Handler
+    private $sth;
     private $error;
-    private $stmt;
 
     public function __construct()
     {
+        // Data Source Name
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+
         $options = array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -29,7 +33,7 @@ class Database
 
     public function query($query)
     {
-        $this->stmt = $this->dbh->prepare($query);
+        $this->sth = $this->dbh->prepare($query);
     }
 
 
@@ -50,30 +54,30 @@ class Database
                     $type = PDO::PARAM_STR;
             }
         }
-        $this->stmt->bindValue($param, $value, $type);
+        $this->sth->bindValue($param, $value, $type);
     }
 
 
     public function execute()
     {
-        return $this->stmt->execute();
+        return $this->sth->execute();
     }
 
     public function resultset()
     {
         $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->sth->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function single()
     {
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_OBJ);
+        return $this->sth->fetch(PDO::FETCH_OBJ);
     }
 
     public function rowCount()
     {
-        return $this->stmt->rowCount();
+        return $this->sth->rowCount();
     }
 
     public function lastInsertId()

@@ -1,0 +1,109 @@
+body {
+    background-color: #F2F3F4;
+
+}
+
+
+.search-all {
+    position: absolute;
+    right: 0px;
+    top: 12px;
+
+}
+
+.search-text {
+    width: 250px;
+    height: 24px;
+
+}
+
+.search-button {
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+
+}
+
+.form-all {
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #73C6B6;
+    padding: 10px;
+    padding-bottom: 100px;
+    margin: 20px;
+    width: 1000px;
+
+}
+
+.form-img {
+    width: 25px;
+    height: 25px;
+
+}
+
+h1 {
+    font-family: Belwe Cn BT;
+    font-size: 50px;
+    color: purple;
+}
+
+.form-input {
+    width: 300px;
+    height: 35px;
+
+}
+
+.form-email {
+    width: 350px;
+    height: 35px;
+
+}
+
+
+.advertise1 {
+    position: absolute;
+    right: 40px;
+    top: 186px;
+    width: 400px;
+    height: 500px;
+
+}
+
+.advertise2 {
+    position: absolute;
+    right: 0px;
+    top: 740px;
+    width: 360px;
+    height: 640px;
+
+}
+
+.form-code {
+    width: 100px;
+    height: 35px;
+
+}
+
+.form-tel {
+    width: 300px;
+    height: 35px;
+
+}
+
+.form-message {
+    width: 900px;
+    height: 150px;
+
+}
+
+.form-submit {
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    display: block;
+    position: absolute;
+    left: 450px;
+}

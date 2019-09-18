@@ -79,6 +79,10 @@ class User extends BaseController
                 }
             }
 
+            // if (! filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            //     $data['email_err'] = 'You have entered an invalid email';
+            // }
+
             if (empty($data['name'])) {
                 $data['name_err'] = 'Pleae enter name';
             }
@@ -180,6 +184,10 @@ class User extends BaseController
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_type'] = $user->userType;
+        // $cstrong =  true;
+        // $token =  bin2hex(openssl_random_pseudo_bytes(64 ,$cstrong));
+        // echo $token;
+        // die();
         switch ($user->userType) {
             case 'member':
                 redirect('user/index');

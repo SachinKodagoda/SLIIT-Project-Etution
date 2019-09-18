@@ -1,11 +1,11 @@
-<!-- css -->
+<?php require APPROOT . '/views/_includes/_header.php'; ?>
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/vendor/css/owl.carousel.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/vendor/css/owl.theme.default.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/user.css" />
 </head>
 
 <body>
-    <?php require APPROOT . '/views/_includes/_header.php'; ?>
+
     <?php require APPROOT . '/views/_includes/_navbar.php'; ?>
     <div class="topic">
         WELCOME TO E-TUTION.COM
@@ -57,7 +57,7 @@
                 </div>
                 <div class="flex_item">
                     <div class="flex_item_topic"></div>
-                    <div class="flex_item_body">Reserve Private Lectures</div>
+                    <div class="flex_item_body" onclick="navFunction('<?php echo URLROOT ?>/tutor')">Reserve Private Lectures</div>
                     <div class="flex_item_desc">You can reserve online tuition sessions </div>
                 </div>
 

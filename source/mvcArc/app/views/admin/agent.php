@@ -1,12 +1,12 @@
-<!-- css -->
+<?php require APPROOT . '/views/_includes/_header.php'; ?>
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/admin.css" />
 </head>
 <body>
-<?php require APPROOT . '/views/_includes/_header.php'; ?>
-<?php require APPROOT . '/views/admin/_adminTopMenu.php'; ?>
+
+<?php require APPROOT . '/views/admin/common/_adminTopMenu.php'; ?>
 
 <div class="clearfix">
-    <?php require APPROOT . '/views/admin/_adminLeftMenu.php'; ?>
+    <?php require APPROOT . '/views/admin/common/_adminLeftMenu.php'; ?>
 
     <div class="rightBody">
         <div class="dashboardItem clearfix">
