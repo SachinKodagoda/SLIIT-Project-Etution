@@ -45,7 +45,7 @@
                                     <td class="center">
 
 
-                                        <form id="editFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_edit/<?php echo $userData->id; ?>" method="get">
+                                        <form id="editFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_edit/<?php echo $userData->id; ?>" method="post">
                                             <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
                                             <button class="table_btn btn_blue" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')">
                                                 <i class="fa fa-edit"></i>Edit

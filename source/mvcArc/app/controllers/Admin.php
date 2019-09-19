@@ -54,63 +54,60 @@ class Admin extends BaseController
     public function member_edit($id)
     {
         $users = $this->adminModel->getAuser($id);
-        $data = [
-            'member_id' => $id,
-            'member_name' => $users->name,
-            'member_email' => $users->email,
-            'member_password' => '',
-            'member_name_err' => '',
-            'member_email_err' => '',
-            'member_password_err' => '',
-        ];
-
+        // CHECK THE POST METHOD OR GET METHOD
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $data = [
-                'name' => trim($_POST['name']),
-                'email' => trim($_POST['email']),
-                'password' => trim($_POST['password']),
-                'member_id' => $id,
-                'member_name' => $users->name,
-                'member_email' => $users->email,
-                'member_password' => '',
-                'member_name_err' => '',
-                'member_email_err' => '',
-                'member_password_err' => '',
-            ];
+            // CHECK WHETHER THE REQUEST IS SENT FROM THE EDIT FORM
+            if (isset($_POST['name'])) {
 
-            if (empty($data['email'])) {
-                $data['member_email_err'] = 'Pleae enter email';
-            }
+                $data = [
+                    'name' => trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'type' => trim($_POST['type']),
+                    'member_id' => $id,
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
 
-            if (empty($data['name'])) {
-                $data['member_name_err'] = 'Pleae enter name';
-            }
+                if (empty($data['email'])) {
+                    $data['member_email_err'] = 'email cannot be a empty value';
+                }
 
-            if (empty($data['password'])) {
-                $data['member_password_err'] = 'Pleae enter password';
-            } elseif (strlen($data['password']) < 6) {
-                $data['member_password_err'] = 'Password must be at least 6 characters';
-            }
+                if (empty($data['name'])) {
+                    $data['member_name_err'] = 'Name cannot be a empty value';
+                }
 
+                if (empty($data['member_email_err']) && empty($data['member_name_err'])) {
+                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            if (empty($data['member_email_err']) && empty($data['member_name_err']) && empty($data['member_password_err'])) {
-                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-                // if ($this->userModel->register($data)) {
-                //     flash('register_success', 'You are registered and can log in');
-                //     redirect('user/login');
-                // } else {
-                //     die('Something went wrong');
-                // }
-                $this->view('admin/member_edit', $data);
-
+                    if ($this->adminModel->updateAuser($data)) {
+                        // flash('update_success', 'Successfully Registered');
+                        $this ->member();
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+                    $this->view('admin/member_edit', $data);
+                }
             } else {
+                $data = [
+                    'member_id' => $id,
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
                 $this->view('admin/member_edit', $data);
             }
-        } else {
-
-            $this->view('admin/member_edit', $data);
         }
     }
 
