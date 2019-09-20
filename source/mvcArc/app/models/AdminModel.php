@@ -14,6 +14,20 @@ class AdminModel
         return $this->db->resultset();
     }
 
+    public function getLecturerDetails()
+    {
+        $this->db->query("SELECT *
+        FROM users WHERE userType='lecturer' ORDER BY id");
+        return $this->db->resultset();
+    }
+
+    public function getAgentDetails()
+    {
+        $this->db->query("SELECT *
+        FROM users WHERE userType='customer_agent' ORDER BY id");
+        return $this->db->resultset();
+    }
+
     public function deletePost($id)
     {
         $this->db->query('DELETE FROM users WHERE id = :id');
@@ -35,13 +49,13 @@ class AdminModel
 
     public function updateAuser($data)
     {
-        if(empty($data['password'])){
+        if (empty($data['password'])) {
             $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType WHERE id = :id");
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':userType', $data['type']);
             $this->db->bind(':id', $data['member_id']);
-        }else{
+        } else {
             $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType , password=:password WHERE id = :id");
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
@@ -51,6 +65,18 @@ class AdminModel
         }
 
 
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function activateAuser($id, $status)
+    {
+        $this->db->query("UPDATE users SET status =:status WHERE id = :id");
+        $this->db->bind(':status', $status);
+        $this->db->bind(':id', $id);
         if ($this->db->execute()) {
             return true;
         } else {

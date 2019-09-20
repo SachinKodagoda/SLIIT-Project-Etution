@@ -35,19 +35,28 @@ class Admin extends BaseController
 
     public function lecturer()
     {
-        $data = [];
+        $lecturers = $this->adminModel->getLecturerDetails();
+        $data = [
+            'lecturers' => $lecturers
+        ];
         $this->view('admin/lecturer', $data);
     }
 
     public function agent()
     {
-        $data = [];
+        $users = $this->adminModel->getAgentDetails();
+        $data = [
+            'agent' => $users
+        ];
         $this->view('admin/agent', $data);
     }
 
     public function report()
     {
-        $data = [];
+        $users = $this->adminModel->getUserDetails();
+        $data = [
+            'data' => $users
+        ];
         $this->view('admin/report', $data);
     }
 
@@ -88,7 +97,7 @@ class Admin extends BaseController
 
                     if ($this->adminModel->updateAuser($data)) {
                         // flash('update_success', 'Successfully Registered');
-                        $this ->member();
+                        $this->member();
                     } else {
                         die('Something went wrong');
                     }
@@ -118,5 +127,17 @@ class Admin extends BaseController
             'test' => $users
         ];
         $this->view('admin/member', $data);
+    }
+
+    public function change_state($id)
+    {
+        $user = $this->adminModel->getAuser($id);
+        $newStatus = $user->status == 1 ? 0 : 1;
+        if ($this->adminModel->activateAuser($id, $newStatus)) {
+            // flash('update_success', 'Successfully Registered');
+            $this->member();
+        } else {
+            die('Something went wrong');
+        }
     }
 }

@@ -38,3 +38,15 @@ CREATE TABLE users (
 
 INSERT INTO users (id, name, email, userType, password, created_at) VALUES
 (1, 'Sachin Kodagoda', 'duminda.g.k@gmail.com', 'admin', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-08-08 23:01:15');
+
+
+INSERT INTO users (name, email, userType, password, created_at) VALUES
+('a', 'a@gmail.com', 'admin', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-01-08 23:01:15'),
+('b', 'b@gmail.com', 'member', '0$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-01-08 23:01:15'),
+('c', 'c@gmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-02-08 23:01:15'),
+('d', 'd@gmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-03-08 23:01:15'),
+('e', 'e@gmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-04-08 23:01:15'),
+('f', 'f@gmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-05-08 23:01:15'),
+('g', 'ggmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-12-08 23:01:15'),
+('h', 'hmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-08-08 23:01:15'),
+('i', 'igmail.com', 'member', '$2y$10$10zDMnCw7Az8mGInaeCq6.PRSMLhrNPrFSJ1kTXJ35XnQiZ.O3n6u','2019-11-08 23:01:15');
