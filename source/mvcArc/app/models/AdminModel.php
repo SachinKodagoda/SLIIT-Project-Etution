@@ -53,18 +53,20 @@ class AdminModel
     public function update_a_user($data)
     {
         if (empty($data['password'])) {
-            $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType WHERE id = :id");
+            $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType , country =:country WHERE id = :id");
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':userType', $data['type']);
             $this->db->bind(':id', $data['member_id']);
+            $this->db->bind(':country', $data['country']);
         } else {
-            $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType , password=:password WHERE id = :id");
+            $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType , password=:password , country =:country WHERE id = :id");
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':userType', $data['type']);
             $this->db->bind(':password', $data['password']);
             $this->db->bind(':id', $data['member_id']);
+            $this->db->bind(':country', $data['country']);
         }
 
         if ($this->db->execute()) {

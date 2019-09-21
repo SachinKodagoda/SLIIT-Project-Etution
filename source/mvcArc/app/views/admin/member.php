@@ -102,6 +102,7 @@
         });
     </script>
     <!-- Grpah Data -->
+    <script src="<?php echo URLROOT ?>/vendor/js/testCountries.js"></script>
     <script type="text/javascript">
         <?php
         $m1 = 0;
@@ -128,9 +129,12 @@
         $a10 = 0;
         $a11 = 0;
         $a12 = 0;
+        $countryPhpArry = array();
         foreach ($data['members'] as $userData) {
             $mydate = $userData->created_at;
             $month = date("n", strtotime($mydate));
+            array_push($countryPhpArry, $userData->country);
+
             switch ($month) {
                 case 1:
                     $m1++;
@@ -212,6 +216,34 @@
         $allUsers = array($m1, $m2, $m3, $m4, $m5, $m6, $m7, $m8, $m9, $m10, $m11, $m12);
         $activeUsers = array($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11, $a12);
         ?>
+
+            var ctryJson = {};
+            var tempCtryJson = <?php echo '["' . implode('", "', $countryPhpArry) . '"]' ?>;
+
+            function changeTheAlpha(str) {
+                var opacity = str.slice(13, 16);
+                var total = tempCtryJson.length == 0 ? 1 : parseFloat(tempCtryJson.length);
+                console.log(total);
+                var newOpcaity = parseFloat(opacity) + 1.0 / total;
+
+                return 'rgba(255,0,0,' + newOpcaity + ')';
+            };
+
+
+            for (var i = 0; i < tempCtryJson.length; i++) {
+                for (var x = 0; x < items.length; x++) {
+                    if (items[x].name == tempCtryJson[i]) {
+                        if (ctryJson.hasOwnProperty(items[x].val)) {
+                            ctryJson[items[x].val] = changeTheAlpha(ctryJson[items[x].val]);
+                        } else {
+                            ctryJson[items[x].val] = 'rgba(255,0,0,0.4)';
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // console.log(ctryJson);
 
             var dataArr1 = <?php echo '["' . implode('", "', $allUsers) . '"]' ?>;
             var dataArr2 = <?php echo '["' . implode('", "', $activeUsers) . '"]' ?>;
@@ -316,9 +348,7 @@
             // selectedRegions: null,
             selectedColor: null,
             showTooltip: true,
-            colors: {
-                lk: '#f00',
-            },
+            colors: ctryJson,
             onRegionClick: function(element, code, region) {
                 event.preventDefault();
                 // var message = 'You clicked "' +

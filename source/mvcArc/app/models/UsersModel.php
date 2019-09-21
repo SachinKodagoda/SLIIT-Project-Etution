@@ -10,10 +10,11 @@ class UsersModel
 
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
+        $this->db->query('INSERT INTO users (name, email, password , country) VALUES(:name, :email, :password , :country)');
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
+        $this->db->bind(':country', $data['country']);
 
         if ($this->db->execute()) {
             return true;

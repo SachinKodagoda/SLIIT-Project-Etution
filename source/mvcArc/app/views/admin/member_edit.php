@@ -40,6 +40,13 @@
                         </select>
                     </div>
 
+                    <div class="form_group">
+                        <label for="country" class="label">Country:</label>
+                        <select name="country" id="subname" class="form_control">
+                            <option value="Not Selected" selected>Not Selected </option>
+                        </select>
+                    </div>
+
 
                     <div class="form_group">
                         <label for="password" class="label">Password:</label>
@@ -60,5 +67,19 @@
         $(document).ready(function() {
             $('#memberActive').addClass('active');
         });
+    </script>
+    <script src="<?php echo URLROOT ?>/vendor/js/testCountries.js"></script>
+    <?php $ctryVal = $data['country'] ?>
+    <script>
+        var xtr = document.getElementById("subname");
+        for (var i = 0; i < items.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = items[i].name;
+            opt.innerHTML = items[i].name;
+            xtr.appendChild(opt);
+            if(items[i].name == "<?php echo $ctryVal?>"){
+                opt.selected = items[i].name;
+            }
+        }
     </script>
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>

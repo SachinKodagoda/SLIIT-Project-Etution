@@ -58,6 +58,7 @@ class Admin extends BaseController
                     'password' => trim($_POST['password']),
                     'type' => trim($_POST['type']),
                     'member_id' => $id,
+                    'country' => trim($_POST['country']),
                     'member_name' => $users->name,
                     'member_email' => $users->email,
                     'member_userType' => $users->userType,
@@ -90,6 +91,7 @@ class Admin extends BaseController
             } else {
                 $data = [
                     'member_id' => $id,
+                    'country' => $users->country,
                     'member_name' => $users->name,
                     'member_email' => $users->email,
                     'member_userType' => $users->userType,
