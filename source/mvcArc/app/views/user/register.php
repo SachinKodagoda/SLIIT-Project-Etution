@@ -17,6 +17,17 @@
                 <span class="form_validation_error"><?php echo $data['email_err']; ?></span>
             </div>
             <div class="form_group">
+                <label for="country" class="label">Country:</label>
+                <select name="country" id="subname" class="form_control">
+                    <option value="" selected>Not Selected </option>
+                    <option value="php">PHP</option>
+                    <option value="css">CSS</option>
+                    <option value="html">HTML</option>
+                    <option value="c++">C++</option>
+                    <option value="javascript">JAVASCRIPT</option>
+                </select>
+            </div>
+            <div class="form_group">
                 <label for="password" class="label">Password: <span class="important">*</span></label>
                 <input type="password" autocomplete="new-password" name="password" class="form_control <?php echo (!empty($data['password_err'])) ? 'error_input' : ''; ?>" value="<?php echo $data['password']; ?>">
                 <span class="form_validation_error"><?php echo $data['password_err']; ?></span>
@@ -29,7 +40,7 @@
 
             <div>
                 <input type="submit" value="Register" class="form_submit_btn"><br />
-                <div class="form_login_btn_cover">Do you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/login')" class="form_login_btn">Login</span></div>
+                <div class="form_login_btn_cover">Do you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/login')" class="form_login_btn" style="cursor:pointer;">Login</span></div>
             </div>
         </form>
     </div>
