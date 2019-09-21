@@ -7,28 +7,25 @@ class AdminModel
         $this->db = new Database;
     }
 
-    public function getUserDetails()
+    // GET USERS -----------------------------------------------
+    public function get_users($usertype)
     {
-        $this->db->query("SELECT *
-                        FROM users WHERE userType='member' ORDER BY id");
+        $this->db->query("SELECT * FROM users WHERE userType=:usertype ORDER BY id");
+        $this->db->bind(':usertype', $usertype);
         return $this->db->resultset();
     }
 
-    public function getLecturerDetails()
+    // GET A USER -----------------------------------------------
+    public function get_a_user($id, $usertype)
     {
-        $this->db->query("SELECT *
-        FROM users WHERE userType='lecturer' ORDER BY id");
-        return $this->db->resultset();
+        $this->db->query("SELECT * FROM users WHERE userType=:usertype && id= :id ORDER BY id");
+        $this->db->bind(':id', $id);
+        $this->db->bind(':usertype', $usertype);
+        return $this->db->single();
     }
 
-    public function getAgentDetails()
-    {
-        $this->db->query("SELECT *
-        FROM users WHERE userType='customer_agent' ORDER BY id");
-        return $this->db->resultset();
-    }
-
-    public function deletePost($id)
+    // DELETE A USER -----------------------------------------------
+    public function delete_a_user($id)
     {
         $this->db->query('DELETE FROM users WHERE id = :id');
         $this->db->bind(':id', $id);
@@ -39,15 +36,21 @@ class AdminModel
         }
     }
 
-    public function getAuser($id)
+    // ACTIVATE A USER -----------------------------------------------
+    public function activate_a_user($id, $status)
     {
-        $this->db->query("SELECT *
-                        FROM users WHERE userType='member' && id= :id ORDER BY id");
+        $this->db->query("UPDATE users SET status =:status WHERE id = :id");
+        $this->db->bind(':status', $status);
         $this->db->bind(':id', $id);
-        return $this->db->single();
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function updateAuser($data)
+    // UPDATE A USER -----------------------------------------------
+    public function update_a_user($data)
     {
         if (empty($data['password'])) {
             $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType WHERE id = :id");
@@ -64,19 +67,6 @@ class AdminModel
             $this->db->bind(':id', $data['member_id']);
         }
 
-
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function activateAuser($id, $status)
-    {
-        $this->db->query("UPDATE users SET status =:status WHERE id = :id");
-        $this->db->bind(':status', $status);
-        $this->db->bind(':id', $id);
         if ($this->db->execute()) {
             return true;
         } else {

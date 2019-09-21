@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/_includes/_header.php'; ?>
-<link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/admin.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/admin/admin.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/admin/member_edit.css" />
 </head>
 

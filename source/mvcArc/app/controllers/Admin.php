@@ -11,58 +11,41 @@ class Admin extends BaseController
         }
     }
 
+    // ADMIN PAGE -----------------------------------------------
     public function index()
     {
         $data = [];
         $this->view('admin/index', $data);
     }
 
-    public function delete($id)
+    // MEMBER PAGE------------------------------------------------------------------------
+    public function member()
+    {
+        $users = $this->adminModel->get_users('member');
+        $data = [
+            'members' => $users
+        ];
+        $this->view('admin/member', $data);
+    }
+
+    public function member_delete($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if ($this->adminModel->deletePost($id)) {
+            if ($this->adminModel->delete_a_user($id)) {
                 flash('delete_message', 'User Succesfully Deleted');
                 redirect('admin/member');
             } else {
                 flash('delete_message', 'User is not Deleted');
                 redirect('admin/member');
-                // die();
             }
         } else {
-            redirect('posts');
+            redirect('admin/member');
         }
-    }
-
-    public function lecturer()
-    {
-        $lecturers = $this->adminModel->getLecturerDetails();
-        $data = [
-            'lecturers' => $lecturers
-        ];
-        $this->view('admin/lecturer', $data);
-    }
-
-    public function agent()
-    {
-        $users = $this->adminModel->getAgentDetails();
-        $data = [
-            'agent' => $users
-        ];
-        $this->view('admin/agent', $data);
-    }
-
-    public function report()
-    {
-        $users = $this->adminModel->getUserDetails();
-        $data = [
-            'data' => $users
-        ];
-        $this->view('admin/report', $data);
     }
 
     public function member_edit($id)
     {
-        $users = $this->adminModel->getAuser($id);
+        $users = $this->adminModel->get_a_user($id, 'member');
         // CHECK THE POST METHOD OR GET METHOD
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -95,8 +78,8 @@ class Admin extends BaseController
                 if (empty($data['member_email_err']) && empty($data['member_name_err'])) {
                     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-                    if ($this->adminModel->updateAuser($data)) {
-                        // flash('update_success', 'Successfully Registered');
+                    if ($this->adminModel->update_a_user($data)) {
+                        flash('update_success', 'Successfully Member Updated');
                         $this->member();
                     } else {
                         die('Something went wrong');
@@ -120,24 +103,95 @@ class Admin extends BaseController
         }
     }
 
-    public function member()
+    public function member_change_state($id)
     {
-        $users = $this->adminModel->getUserDetails();
-        $data = [
-            'test' => $users
-        ];
-        $this->view('admin/member', $data);
-    }
-
-    public function change_state($id)
-    {
-        $user = $this->adminModel->getAuser($id);
+        $user = $this->adminModel->get_a_user($id, 'member');
         $newStatus = $user->status == 1 ? 0 : 1;
-        if ($this->adminModel->activateAuser($id, $newStatus)) {
-            // flash('update_success', 'Successfully Registered');
+        if ($this->adminModel->activate_a_user($id, $newStatus)) {
+            flash('update_success', 'Successfully Member Status Changed');
             $this->member();
         } else {
             die('Something went wrong');
         }
+    }
+    // LECTURER PAGE------------------------------------------------------------------------
+
+    public function lecturer()
+    {
+        $lecturers = $this->adminModel->get_users('lecturer');
+        $data = [
+            'lecturers' => $lecturers
+        ];
+        $this->view('admin/lecturer', $data);
+    }
+    public function lecturer_delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->adminModel->delete_a_user($id)) {
+                flash('delete_message', 'User Succesfully Deleted');
+                redirect('admin/lecturer');
+            } else {
+                flash('delete_message', 'User is not Deleted');
+                redirect('admin/lecturer');
+            }
+        } else {
+            redirect('admin/lecturer');
+        }
+    }
+    public function lecturer_change_state($id)
+    {
+        $user = $this->adminModel->get_a_user($id, 'lecturer');
+        $newStatus = $user->status == 1 ? 0 : 1;
+        if ($this->adminModel->activate_a_user($id, $newStatus)) {
+            flash('update_success', 'Successfully Lecturer Status Changed');
+            $this->lecturer();
+        } else {
+            die('Something went wrong');
+        }
+    }
+    // AGENT PAGE------------------------------------------------------------------------
+    public function agent()
+    {
+        $users = $this->adminModel->get_users('customer_agent');
+        $data = [
+            'agent' => $users
+        ];
+        $this->view('admin/agent', $data);
+    }
+    public function agent_delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->adminModel->delete_a_user($id)) {
+                flash('delete_message', 'User Succesfully Deleted');
+                redirect('admin/agent');
+            } else {
+                flash('delete_message', 'User is not Deleted');
+                redirect('admin/agent');
+            }
+        } else {
+            redirect('admin/agent');
+        }
+    }
+
+    public function agent_change_state($id)
+    {
+        $user = $this->adminModel->get_a_user($id, 'customer_agent');
+        $newStatus = $user->status == 1 ? 0 : 1;
+        if ($this->adminModel->activate_a_user($id, $newStatus)) {
+            flash('update_success', 'Successfully Agent Status Changed');
+            $this->lecturer();
+        } else {
+            die('Something went wrong');
+        }
+    }
+
+    // REPORT PAGE------------------------------------------------------------------------
+    public function report()
+    {
+        $users = $this->adminModel->get_users('member');
+        $data = [
+            'data' => $users
+        ];
+        $this->view('admin/report', $data);
     }
 }
