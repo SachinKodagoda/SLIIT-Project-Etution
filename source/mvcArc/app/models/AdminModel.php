@@ -10,7 +10,7 @@ class AdminModel
     // GET USERS -----------------------------------------------
     public function get_users($usertype)
     {
-        $this->db->query("SELECT * FROM users WHERE userType=:usertype ORDER BY id");
+        $this->db->query("SELECT * FROM users WHERE userType=:usertype ORDER BY created_at ");
         $this->db->bind(':usertype', $usertype);
         return $this->db->resultset();
     }
