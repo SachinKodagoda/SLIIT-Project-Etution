@@ -14,8 +14,99 @@ class Admin extends BaseController
     // ADMIN PAGE -----------------------------------------------
     public function index()
     {
-        $data = [];
+        $users = $this->adminModel->get_users('admin');
+        $user = $this->adminModel->get_a_user($_SESSION['user_id'], 'admin');
+        $data = [
+            'admins' => $users,
+            'admin' => $user,
+        ];
         $this->view('admin/index', $data);
+    }
+
+    public function index_file()
+    {
+
+        if (isset($_FILES["fileToUpload"]["name"])) {
+            $target_dir = PUBROOT . "\\public\\img\\uploads\\";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $uploadOk = 1;
+            $errorMsg = '';
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            // Check if image file is a actual image or fake image (0 byte images)
+            // following both ways can be used exif_imagetype is faster than getimagesize
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            // $passedval = exif_imagetype($_FILES["fileToUpload"]["tmp_name"]);
+            // if($passedval == 1){
+            //     // 1	IMAGETYPE_GIF
+            //     // 2	IMAGETYPE_JPEG
+            //     // 3	IMAGETYPE_PNG
+            //     // 4	IMAGETYPE_SWF
+            //     // 5	IMAGETYPE_PSD
+            //     // 6	IMAGETYPE_BMP
+            //     // 7	IMAGETYPE_TIFF_II (intel byte order)
+            //     // 8	IMAGETYPE_TIFF_MM (motorola byte order)
+            //     // 9	IMAGETYPE_JPC
+            //     // 10	IMAGETYPE_JP2
+            //     // 11	IMAGETYPE_JPX
+            //     // 12	IMAGETYPE_JB2
+            //     // 13	IMAGETYPE_SWC
+            //     // 14	IMAGETYPE_IFF
+            //     // 15	IMAGETYPE_WBMP
+            //     // 16	IMAGETYPE_XBM
+            //     // 17	IMAGETYPE_ICO
+            //     // 18	IMAGETYPE_WEBP
+            // }
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $errorMsg = $errorMsg . "File is not an image." . "<br/> ";
+                $uploadOk = 0;
+            }
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                $errorMsg = $errorMsg . "Sorry, file already exists." . "<br/> ";
+                $uploadOk = 0;
+            }
+            // Check file size
+            if ($_FILES["fileToUpload"]["size"] > 500000) {
+                $errorMsg = $errorMsg . "Sorry, your file is too large." . "<br/> ";
+                $uploadOk = 0;
+            }
+            // Allow certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                $errorMsg = $errorMsg . "Sorry, only JPG, JPEG, PNG & GIF files are allowed." . "<br/> ";
+                $uploadOk = 0;
+            }
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                flash('update_success', $errorMsg);
+                $this->index();
+
+                // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    $errorMsg = $errorMsg . "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded." . "<br/> ";
+
+                    if ($this->adminModel->update_a_user_img_path($_SESSION['user_id'], basename($_FILES["fileToUpload"]["name"]))) {
+                        flash('update_success', $errorMsg);
+                        $this->index();
+                    } else {
+                        $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
+                        flash('update_success', $errorMsg);
+                        $this->index();
+                    }
+                } else {
+                    $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
+                    flash('update_success', $errorMsg);
+                    $this->index();
+                }
+            }
+        } else {
+            $this->index();
+        }
     }
 
     // MEMBER PAGE------------------------------------------------------------------------
@@ -34,12 +125,15 @@ class Admin extends BaseController
             if ($this->adminModel->delete_a_user($id)) {
                 flash('delete_message', 'User Succesfully Deleted');
                 redirect('admin/member');
+                // $this->member();
             } else {
                 flash('delete_message', 'User is not Deleted');
                 redirect('admin/member');
+                // $this->member();
             }
         } else {
             redirect('admin/member');
+            // $this->member();
         }
     }
 

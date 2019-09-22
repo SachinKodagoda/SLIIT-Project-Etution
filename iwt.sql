@@ -31,7 +31,9 @@ CREATE TABLE users (
   userType enum('member','admin','lecturer','customer_agent','advertiser_agent','visitor','developer') NOT NULL DEFAULT 'member',
   password varchar(256) NOT NULL,
   country varchar(256) DEFAULT 'Not Selected',
-  status int(0) DEFAULT 1,
+  online_status int(1) DEFAULT 1,
+  img_name varchar(256) DEFAULT 'dummy1.jpg',
+  status int(1) DEFAULT 1,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

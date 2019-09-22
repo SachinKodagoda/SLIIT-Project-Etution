@@ -7,6 +7,7 @@ define("DB_PASS", "");
 define("DB_NAME", "iwt");
 
 define('APPROOT', dirname(dirname(__FILE__)));
+define('PUBROOT', dirname(dirname(dirname(__FILE__))));
 define('URLROOT', 'http://localhost:3000/mvcArc');
 define('SITENAME', 'MyMVC');
 define('APPVERSION', '1.0.0');
@@ -20,6 +21,7 @@ define('APPVERSION', '1.0.0');
 // define("DB_NAME", "u820269341_iwt");
 
 // define('APPROOT', dirname(dirname(__FILE__)));
+// define('PUBROOT', dirname(dirname(dirname(__FILE__))));
 // define('URLROOT', 'https://wda-soft.com/mvcArc');
 // define('SITENAME', 'MyMVC');
 // define('APPVERSION', '1.0.0');

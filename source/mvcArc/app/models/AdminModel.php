@@ -49,6 +49,19 @@ class AdminModel
         }
     }
 
+    // UPDATE USER IMAGE PATH -----------------------------------------------
+    public function update_a_user_img_path($id, $img_name)
+    {
+        $this->db->query("UPDATE users SET img_name=:img_name WHERE id = :id");
+        $this->db->bind(':img_name', $img_name);
+        $this->db->bind(':id', $id);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // UPDATE A USER -----------------------------------------------
     public function update_a_user($data)
     {

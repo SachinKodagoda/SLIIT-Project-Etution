@@ -223,7 +223,6 @@
             function changeTheAlpha(str) {
                 var opacity = str.slice(13, 16);
                 var total = tempCtryJson.length == 0 ? 1 : parseFloat(tempCtryJson.length);
-                console.log(total);
                 var newOpcaity = parseFloat(opacity) + 1.0 / total;
 
                 return 'rgba(255,0,0,' + newOpcaity + ')';
@@ -231,6 +230,11 @@
 
 
             for (var i = 0; i < tempCtryJson.length; i++) {
+
+                if (tempCtryJson[i] == "Not Selected") {
+                    continue;
+                }
+
                 for (var x = 0; x < items.length; x++) {
                     if (items[x].name == tempCtryJson[i]) {
                         if (ctryJson.hasOwnProperty(items[x].val)) {

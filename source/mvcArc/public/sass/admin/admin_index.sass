@@ -1,0 +1,83 @@
+@import 'admin'
+@import 'common/table'
+
+.delete_button_form
+    display: inline-block
+.status_active
+    color: #fff
+    background: green
+    border-color: green
+.status_disabled
+    color: #000
+    background: #ccc
+    border-color: #ccc
+    box-shadow: inset 0px 2px 5px #111
+
+.icon_margin
+    margin-right: 6px
+
+.admin_profile
+    width: 96%
+    margin: auto
+    height: auto
+    padding: 10px
+    border-radius: 3px
+    background: #ffffff
+    border-top: 3px solid #3c8dbc
+    margin-bottom: 20px
+    +LARGE
+        width: 80%
+    +XLARGE
+        width: 50%
+    &_img
+        width: 100%
+        height: 100%
+        border-radius: 50%
+        +noSelect
+    &_img_cover
+        margin: 0 auto
+        width: 100px
+        padding: 3px
+        border: 3px solid #d2d6de
+        border-radius: 50%
+        height: 100px
+        position: relative
+    &_name
+        text-align: center
+        font-size: 1.5rem
+        font-weight: 900
+    &_subname
+        text-align: center
+        font-size: 1rem
+        color: #3c8dbc
+    &_uploadbtn
+        position: absolute
+        color: #fff
+        border: none
+        outline: none
+        width: 0.1px
+        height: 0.1px
+        opacity: 0
+        overflow: hidden
+        position: absolute
+        z-index: -1
+
+
+.profile
+    &_table
+        margin: 10px auto 20px auto
+    &_column:nth-child(1)
+        width: 50%
+        text-align: right
+        font-weight: 600
+        padding-right: 20px
+    &_column:nth-child(2)
+        width: 50%
+        padding-left: 0px
+
+.profile_table_top_hr
+    border-color: #ccc
+    border-width: 2px
+    margin: 10px auto
+    width: 80%
+
