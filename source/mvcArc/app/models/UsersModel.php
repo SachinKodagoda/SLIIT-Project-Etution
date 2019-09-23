@@ -10,11 +10,18 @@ class UsersModel
 
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (name, email, password , country) VALUES(:name, :email, :password , :country)');
+        $this->db->query('INSERT INTO users (name, email, password , country,gender,img_name,userType) VALUES(:name, :email, :password , :country , :gender, :img_name,:userType)');
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':country', $data['country']);
+        $this->db->bind(':gender', $data['gender']);
+        $this->db->bind(':userType', $data['userType']);
+        if ($data['gender'] == 'male') {
+            $this->db->bind(':img_name', 'dummy1.jpg');
+        } else {
+            $this->db->bind(':img_name', 'dummy2.jpg');
+        }
 
         if ($this->db->execute()) {
             return true;

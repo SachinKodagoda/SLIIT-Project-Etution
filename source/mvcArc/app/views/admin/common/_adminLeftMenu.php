@@ -1,12 +1,34 @@
 <div class="leftMenu">
     <div class="leftMenu_item_profile clearfix">
-        <img src="<?php echo URLROOT ?>/img/admin/profile.jpg" alt="profile" />
+        <img src="<?php echo URLROOT ?>/img/uploads/<?php echo $_SESSION['user_img'] ?>" alt="profile" />
         <div class="leftMenu_item_profile_text">
             <span><?php echo $_SESSION['user_name'] ?></span><br />
-            <span class="leftMenu_item_profile_text_online"><span class="leftMenu_item_profile_text_online_bulb"></span>Profile</span>
-            <!-- <img src="<?php echo URLROOT ?>/img/admin/settings.svg" alt="profile" style="width:16px; height:16px;" /> -->
+            <?php
+            $bg_red = "background: #DD4B39;";
+            $bg_green = "background: #00A65A;";
+            $bg_yellow = "background: #FABF31;";
+            ?>
+            <span class="leftMenu_item_profile_text_online">
+                <span class="leftMenu_item_profile_text_online_bulb" style="<?php
+                                                                            if ($_SESSION['online_status'] == 1) {
+                                                                                echo $bg_green;
+                                                                            } elseif ($_SESSION['online_status'] == 2) {
+                                                                                echo $bg_red;
+                                                                            } elseif ($_SESSION['online_status'] == 3) {
+                                                                                echo $bg_yellow;
+                                                                            }
+                                                                            ?>"></span>
+                <?php
+                                                                            if ($_SESSION['online_status'] == 1) {
+                                                                                echo "Online";
+                                                                            } elseif ($_SESSION['online_status'] == 2) {
+                                                                                echo "Offline";
+                                                                            } elseif ($_SESSION['online_status'] == 3) {
+                                                                                echo "Away";
+                                                                            }
+                ?>
+            </span>
         </div>
-
     </div>
 
     <div class="form_search_padding">

@@ -37,10 +37,10 @@ class AdminModel
     }
 
     // ACTIVATE A USER -----------------------------------------------
-    public function activate_a_user($id, $status)
+    public function activate_a_user($id, $active_status)
     {
-        $this->db->query("UPDATE users SET status =:status WHERE id = :id");
-        $this->db->bind(':status', $status);
+        $this->db->query("UPDATE users SET active_status =:active_status WHERE id = :id");
+        $this->db->bind(':active_status', $active_status);
         $this->db->bind(':id', $id);
         if ($this->db->execute()) {
             return true;
@@ -61,6 +61,20 @@ class AdminModel
             return false;
         }
     }
+
+        // UPDATE USER ONLINE STATUS -----------------------------------------------
+        public function update_a_user_onlineStatus($id, $online_status)
+        {
+            $this->db->query("UPDATE users SET online_status=:online_status WHERE id = :id");
+            $this->db->bind(':online_status', $online_status);
+            $this->db->bind(':id', $id);
+            if ($this->db->execute()) {
+                $_SESSION['online_status'] = $online_status;
+                return true;
+            } else {
+                return false;
+            }
+        }
 
     // UPDATE A USER -----------------------------------------------
     public function update_a_user($data)

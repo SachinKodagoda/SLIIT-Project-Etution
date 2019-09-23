@@ -33,7 +33,8 @@ CREATE TABLE users (
   country varchar(256) DEFAULT 'Not Selected',
   online_status int(1) DEFAULT 1,
   img_name varchar(256) DEFAULT 'dummy1.jpg',
-  status int(1) DEFAULT 1,
+  gender enum('male','female')DEFAULT 'male',
+  active_status int(1) DEFAULT 1,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -60,9 +60,9 @@
                                                 </form>
                                                 <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/agent_change_state/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
-                                                    <button class="table_btn btn_red <?php echo $userData->status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
+                                                    <button class="table_btn btn_red <?php echo $userData->active_status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
                                                         <?php
-                                                            if ($userData->status == 1) {
+                                                            if ($userData->active_status == 1) {
                                                                 echo "Actived";
                                                             } else {
                                                                 echo "Disabled";

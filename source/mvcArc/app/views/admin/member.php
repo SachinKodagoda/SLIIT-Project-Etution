@@ -73,9 +73,9 @@
                                                 </form>
                                                 <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_change_state/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
-                                                    <button class="table_btn btn_red <?php echo $userData->status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
+                                                    <button class="table_btn btn_red <?php echo $userData->active_status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
                                                         <?php
-                                                            if ($userData->status == 1) {
+                                                            if ($userData->active_status == 1) {
                                                                 echo "Actived";
                                                             } else {
                                                                 echo "Disabled";
@@ -138,74 +138,74 @@
             switch ($month) {
                 case 1:
                     $m1++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a1++;
                     }
 
                     break;
                 case 2:
                     $m2++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a2++;
                     }
                     break;
                 case 3:
                     $m3++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a3++;
                     }
                     break;
                 case 4:
                     $m4++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a4++;
                     }
                     break;
                 case 5:
                     $m5++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a5++;
                     }
                     break;
                 case 6:
                     $m6++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a6++;
                     }
                     break;
                 case 7:
                     $m7++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a7++;
                     }
                     break;
                 case 8:
                     $m8++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a8++;
                     }
                     break;
                 case 9:
                     $m9++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a9++;
                     }
                     break;
                 case 10:
                     $m10++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a10++;
                     }
                     break;
                 case 11:
                     $m11++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a11++;
                     }
                     break;
                 case 12:
                     $m12++;
-                    if ($userData->status == 1) {
+                    if ($userData->active_status == 1) {
                         $a12++;
                     }
                     break;

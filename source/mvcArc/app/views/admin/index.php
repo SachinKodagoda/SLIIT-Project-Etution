@@ -42,6 +42,11 @@
                         <td class="profile_column"><?php echo $data['admin']->country; ?></td>
                     </tr>
                 </table>
+                <form class="online_status_form" method="post" action="<?php echo URLROOT; ?>/admin/status_change" id="onlineStatusForm">
+                    <input type="radio" name="onlineStatus" value="1" checked class="online_status_form_input" onclick="radioClick()" <?php echo $data['admin']->online_status == 1 ? "checked" : ""; ?>> Online
+                    <input type="radio" name="onlineStatus" value="2" class="online_status_form_input" onclick="radioClick()" <?php echo $data['admin']->online_status == 2 ? "checked" : ""; ?>> Offline
+                    <input type="radio" name="onlineStatus" value="3" class="online_status_form_input" onclick="radioClick()" <?php echo $data['admin']->online_status == 3 ? "checked" : ""; ?>> Away
+                </form>
             </div>
             <div class="panel_responsive">
 
@@ -86,9 +91,9 @@
                                                 </form>
                                                 <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_change_state/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
-                                                    <button class="table_btn btn_red <?php echo $userData->status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
+                                                    <button class="table_btn btn_red <?php echo $userData->active_status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
                                                         <?php
-                                                            if ($userData->status == 1) {
+                                                            if ($userData->active_status == 1) {
                                                                 echo "Actived";
                                                             } else {
                                                                 echo "Disabled";
@@ -115,15 +120,22 @@
         });
         var filebtn = document.getElementById('fileToUpload');
         var fileUploaderx = document.getElementById('fileUploaderx');
+        var onlineStatusForm = document.getElementById('onlineStatusForm');
 
         function uploadFunction() {
             filebtn.value = "";
             filebtn.click();
         }
 
-        filebtn.onchange = function (){
+        filebtn.onchange = function() {
             var fileName = filebtn.value.split('\\')[filebtn.value.split('\\').length - 1];
             fileUploaderx.submit();
+        }
+
+        function radioClick() {
+            onlineStatusForm.submit();
+            // this.blur();
+            // this.focus();
         }
     </script>
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>

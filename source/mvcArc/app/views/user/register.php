@@ -36,6 +36,23 @@
                 </select>
             </div>
 
+            <div class="form_group">
+                <label for="gender" class="label">Gender:</label>
+                <select name="gender" id="gender" class="form_control">
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form_group">
+                <label for="userType" class="label">Type:</label>
+                <select name="userType" id="userType" class="form_control">
+                    <option value="member" selected>Member</option>
+                    <option value="advertiser_agent">Advertiser Agent</option>
+                    <option value="lecturer">Lecturer</option>
+                </select>
+            </div>
+
             <div>
                 <input type="submit" value="Register" class="form_submit_btn"><br />
                 <div class="form_login_btn_cover">Do you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/login')" class="form_login_btn" style="cursor:pointer;">Login</span></div>

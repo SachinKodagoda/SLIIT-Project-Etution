@@ -65,6 +65,8 @@ class User extends BaseController
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
                 'country' => trim($_POST['country']),
+                'gender' => trim($_POST['gender']),
+                'userType' => trim($_POST['userType']),
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -121,6 +123,8 @@ class User extends BaseController
                 'password' => '',
                 'confirm_password' => '',
                 'country' => '',
+                'gender' => '',
+                'userType' => '',
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -159,7 +163,13 @@ class User extends BaseController
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
                 if ($loggedInUser) {
-                    $this->createUserSession($loggedInUser);
+                    if($loggedInUser->active_status == 1){
+                        $this->createUserSession($loggedInUser);
+                    }else{
+                        $data['password_err'] = 'User has been Deactivated.<br/> Please Contact the Admin';
+                        $this->view('user/login', $data);
+                    }
+                    
                 } else {
                     $data['password_err'] = 'Password incorrect';
 
@@ -186,6 +196,8 @@ class User extends BaseController
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_type'] = $user->userType;
+        $_SESSION['user_img'] = $user->img_name;
+        $_SESSION['online_status'] = $user->online_status;
         // $cstrong =  true;
         // $token =  bin2hex(openssl_random_pseudo_bytes(64 ,$cstrong));
         // echo $token;

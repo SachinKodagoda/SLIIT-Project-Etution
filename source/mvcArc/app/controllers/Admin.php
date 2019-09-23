@@ -91,6 +91,7 @@ class Admin extends BaseController
                     $errorMsg = $errorMsg . "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded." . "<br/> ";
 
                     if ($this->adminModel->update_a_user_img_path($_SESSION['user_id'], basename($_FILES["fileToUpload"]["name"]))) {
+                        $_SESSION['user_img'] = basename($_FILES["fileToUpload"]["name"]);
                         flash('update_success', $errorMsg);
                         $this->index();
                     } else {
@@ -106,6 +107,17 @@ class Admin extends BaseController
             }
         } else {
             $this->index();
+        }
+    }
+    // ONLINE STATUS CHANGER ------------------------------------------------------------------------
+    public function status_change()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if($this->adminModel->update_a_user_onlineStatus($_SESSION['user_id'],$_POST['onlineStatus'])){
+                $this->index();
+            }else{
+                $this->index();
+            }
         }
     }
 
@@ -202,7 +214,7 @@ class Admin extends BaseController
     public function member_change_state($id)
     {
         $user = $this->adminModel->get_a_user($id, 'member');
-        $newStatus = $user->status == 1 ? 0 : 1;
+        $newStatus = $user->active_status == 1 ? 0 : 1;
         if ($this->adminModel->activate_a_user($id, $newStatus)) {
             flash('update_success', 'Successfully Member Status Changed');
             $this->member();
@@ -237,7 +249,7 @@ class Admin extends BaseController
     public function lecturer_change_state($id)
     {
         $user = $this->adminModel->get_a_user($id, 'lecturer');
-        $newStatus = $user->status == 1 ? 0 : 1;
+        $newStatus = $user->active_status == 1 ? 0 : 1;
         if ($this->adminModel->activate_a_user($id, $newStatus)) {
             flash('update_success', 'Successfully Lecturer Status Changed');
             $this->lecturer();
@@ -272,7 +284,7 @@ class Admin extends BaseController
     public function agent_change_state($id)
     {
         $user = $this->adminModel->get_a_user($id, 'customer_agent');
-        $newStatus = $user->status == 1 ? 0 : 1;
+        $newStatus = $user->active_status == 1 ? 0 : 1;
         if ($this->adminModel->activate_a_user($id, $newStatus)) {
             flash('update_success', 'Successfully Agent Status Changed');
             $this->lecturer();
