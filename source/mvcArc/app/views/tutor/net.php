@@ -47,7 +47,7 @@
                         <li>Network Media</li>
                     </ul>
                 </p>
-                <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve')">
+                <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve',true)">
         </div>
     </div>
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>

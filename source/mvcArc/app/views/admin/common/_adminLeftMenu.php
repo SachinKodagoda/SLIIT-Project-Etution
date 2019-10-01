@@ -41,23 +41,23 @@
             </div>
         </form>
     </div>
-    <div class="leftMenu_item_selected clearfix" id="adminActive" onclick="navFunction('<?php echo URLROOT ?>/admin')">
+    <div class="leftMenu_item_selected clearfix" id="adminActive" onclick="navFunction('<?php echo URLROOT ?>/admin',true)">
         <div class="leftMenu_item_selected_icon"><img src="<?php echo URLROOT ?>/img/admin/dashboard.svg" alt="icon" /></div>
         <div class="leftMenu_item_selected_text">Admin</div>
     </div>
-    <div class="leftMenu_item_selected clearfix" id="memberActive" onclick="navFunction('<?php echo URLROOT ?>/admin/member')">
+    <div class="leftMenu_item_selected clearfix" id="memberActive" onclick="navFunction('<?php echo URLROOT ?>/admin/member',true)">
         <div class="leftMenu_item_selected_icon"><img src="<?php echo URLROOT ?>/img/admin/dashboard.svg" alt="icon" /></div>
         <div class="leftMenu_item_selected_text">Member</div>
     </div>
-    <div class="leftMenu_item_selected clearfix" id="lecturerActive" onclick="navFunction('<?php echo URLROOT ?>/admin/lecturer')">
+    <div class="leftMenu_item_selected clearfix" id="lecturerActive" onclick="navFunction('<?php echo URLROOT ?>/admin/lecturer',true)">
         <div class="leftMenu_item_selected_icon"><img src="<?php echo URLROOT ?>/img/admin/dashboard.svg" alt="icon" /></div>
         <div class="leftMenu_item_selected_text">Lecturer</div>
     </div>
-    <div class="leftMenu_item_selected clearfix" id="agentActive" onclick="navFunction('<?php echo URLROOT ?>/admin/agent')">
+    <div class="leftMenu_item_selected clearfix" id="agentActive" onclick="navFunction('<?php echo URLROOT ?>/admin/agent',true)">
         <div class="leftMenu_item_selected_icon"><img src="<?php echo URLROOT ?>/img/admin/dashboard.svg" alt="icon" /></div>
         <div class="leftMenu_item_selected_text">Customer Agent</div>
     </div>
-    <div class="leftMenu_item_selected clearfix" id="reportActive" onclick="navFunction('<?php echo URLROOT ?>/admin/report')">
+    <div class="leftMenu_item_selected clearfix" id="reportActive" onclick="navFunction('<?php echo URLROOT ?>/admin/report',true)">
         <div class="leftMenu_item_selected_icon"><img src="<?php echo URLROOT ?>/img/admin/dashboard.svg" alt="icon" /></div>
         <div class="leftMenu_item_selected_text">Report</div>
     </div>

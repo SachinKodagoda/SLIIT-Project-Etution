@@ -1,7 +1,7 @@
 <div class="main_header clearfix">
     <div class="topic_bar">ADMIN LOGIN</div>
     <div class="notification_bar clearfix">
-        <div class="notification_bar_name" onclick="navFunction('<?php echo URLROOT ?>/user/logout')">LOG OUT
+        <div class="notification_bar_name" onclick="navFunction('<?php echo URLROOT ?>/user/logout',true)">LOG OUT
         </div>
         <div class="notification_bar_icon">
             <img src="<?php echo URLROOT ?>/img/admin/message.svg" class="notification_bar_icon_img" alt="icon" />

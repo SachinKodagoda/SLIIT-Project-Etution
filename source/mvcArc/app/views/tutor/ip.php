@@ -41,7 +41,7 @@
                 rewarding career. Today, you will find programmers’ work used in business, medicine, government, law
                 enforcement, agriculture, academics, entertainment, and many other fields.</p>
 
-            <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve')">
+            <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve',true)">
         </div>
     </div>
 

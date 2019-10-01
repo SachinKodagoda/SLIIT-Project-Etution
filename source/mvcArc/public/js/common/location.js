@@ -1,4 +1,5 @@
-function navFunction(loc){
-    console.log(loc);
-    location.replace(loc);
+function navFunction(loc,action){
+    if(action){
+        location.replace(loc);
+    }
 };

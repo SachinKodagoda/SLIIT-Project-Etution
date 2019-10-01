@@ -39,7 +39,7 @@
                 things change constantly, such as any time there are new laws or a new policy within the company.
 
             </p>
-            <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve')">
+            <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve',true)">
         </div>
     </div>
 

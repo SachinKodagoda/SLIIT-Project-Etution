@@ -57,7 +57,7 @@
                 </div>
                 <div class="flex_item">
                     <div class="flex_item_topic"></div>
-                    <div class="flex_item_body" onclick="navFunction('<?php echo URLROOT ?>/tutor')">Reserve Private Lectures</div>
+                    <div class="flex_item_body" onclick="navFunction('<?php echo URLROOT ?>/tutor',true)">Reserve Private Lectures</div>
                     <div class="flex_item_desc">You can reserve online tuition sessions </div>
                 </div>
 

@@ -40,7 +40,7 @@
             <h3 style="padding: 0px 5%;margin-top: -10px">Web development is the work involved in developing a web site for the Internet or an intranet.<br>
                 Web development can range from developing a simple single static page of plain text to complex web-based internet applications, electronic businesses, <br>
                 and social network services.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/web')">
+            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/web',true)">
             <a href="web.html"></a>
         </div>
     </div>
@@ -51,7 +51,7 @@
             <h3 style="padding: 0px 5%;margin-top: -10px">Communication and Information System, Master. Communication and Information System focuses on information processing and communication system,<br>
                 using mathematical method and computer technology as the main tool, studies a variety of information processing, modern digital communication and <br>
                 broadband network technologies.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/sys')">
+            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/sys',true)">
         </div>
     </div>
     <div class="row">
@@ -60,7 +60,7 @@
             <h1 style="padding: 0px 5%;margin-top: -10px">Network</h1>
             <h3 style="padding: 0px 5%;margin-top: -10px">A computer network is a digital telecommunications network which allows nodes to share resources. In computer networks, computing devices exchange<br>
                 data with each other using connections between nodes. </h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/net')">
+            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/net',true)">
         </div>
     </div>
     <div class="row">
@@ -70,7 +70,7 @@
             <h3 style="padding: 0px 5%;margin-top: -10px">Introduction to Programming Languages. A computer is a computational device which is used to process the data under the control of a computer program.<br>
                 Program is a sequence of instruction along with data. ... Between high-level language and machine language there are assembly language also called <br>
                 olic machine code.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/ip')">
+            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/ip',true)">
         </div>
     </div>
     <div class="row">
@@ -79,7 +79,7 @@
             <h1 style="padding: 0px 5%;margin-top: -10px">Cyber Security</h1>
             <h3 style="padding: 0px 5%;margin-top: -10px">Cybersecurity refers to a set of techniques used to protect the integrity of networks, programs and data from attack, damage or unauthorized access.<br>
                 The use of cyber security can help prevent cyber attacks, data breaches, and identity theft and can aid in risk management.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -30px" onclick="navFunction('<?php echo URLROOT ?>/tutor/cyber')">
+            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -30px" onclick="navFunction('<?php echo URLROOT ?>/tutor/cyber',true)">
         </div>
     </div>
 

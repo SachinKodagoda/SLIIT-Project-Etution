@@ -47,7 +47,7 @@
                     with the very commonly known CIA triad which stands for Confidentiality, Integrity, and
                     Availability. The CIA triad is also commonly referred to as the three pillars of security and most
                     of the security policies of an organization are built on these three principles.</p>
-                <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve')">
+                <input type="button" value="Reserve" class="button" style="margin-left: calc(50% - 100px)" onclick="navFunction('<?php echo URLROOT ?>/tutor/reserve',true)">
         </div>
     </div>
 
