@@ -294,7 +294,7 @@
             <div class="row">
                 <div class="book">
                     <div class="book__form">
-                        <form action="#" class="form">
+                        <form action="<?php echo URLROOT; ?>/visitor/mailer" class="form" method="post">
                             <div class="u-margin-bottom-medium">
                                 <h2 class="heading-secondary">
                                     Send an email
@@ -302,18 +302,23 @@
                             </div>
 
                             <div class="form__group">
-                                <input type="text" class="form__input" placeholder="Full name" id="name" required>
+                                <input name="mailer_name" type="text" class="form__input" placeholder="Full name" id="name" required >
                                 <label for="name" class="form__label">Full name</label>
                             </div>
 
                             <div class="form__group">
-                                <input type="email" class="form__input" placeholder="Email address" id="email" required>
+                                <input name="mailer_email" type="email" class="form__input" placeholder="Email address" id="email" required>
                                 <label for="email" class="form__label">Email address</label>
+                            </div>
+
+                            <div class="form__group">
+                                <input name="mailer_message" type="text" class="form__input" placeholder="Message" id="message_idea" required>
+                                <label for="message" class="form__label">Message</label>
                             </div>
 
                             <div class="form__group u-margin-bottom-medium">
                                 <div class="form__radio-group">
-                                    <input type="radio" class="form__radio-input" id="small" name="size">
+                                    <input type="radio" class="form__radio-input" id="small" name="mailer_subject" value="Feedback"  checked="checked">
                                     <label for="small" class="form__radio-label">
                                         <span class="form__radio-button"></span>
                                         Feedback
@@ -321,17 +326,18 @@
                                 </div>
 
                                 <div class="form__radio-group">
-                                    <input type="radio" class="form__radio-input" id="large" name="size">
+                                    <input type="radio" class="form__radio-input" id="large" name="mailer_subject" value="Issue">
                                     <label for="large" class="form__radio-label">
                                         <span class="form__radio-button"></span>
-                                        Registration issue
+                                        Issue
                                     </label>
                                 </div>
                             </div>
 
                             <div class="form__group">
-                                <button class="btn btn--green">Next step &rarr;</button>
+                                <input class="btn btn--green" type="submit" name="submit" value="Submit &rarr;">
                             </div>
+                            <?php echo $data['mailer_success'] ?>
                         </form>
                     </div>
                 </div>

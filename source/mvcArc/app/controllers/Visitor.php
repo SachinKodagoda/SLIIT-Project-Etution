@@ -16,6 +16,7 @@ class Visitor extends BaseController
     {
         $data = [
             'title' => 'WDA',
+            'mailer_success' => ''
         ];
 
         $this->view('visitor/index', $data);
@@ -43,5 +44,31 @@ class Visitor extends BaseController
             'version' => '1.0.0'
         ];
         $this->view('visitor/tutorials', $data);
+    }
+
+    public function mailer()
+    {
+
+        $data = [
+            'mailer_success' => ''
+        ];
+        $this->view('visitor/mailer', $data);
+    }
+
+    public function success_mailer()
+    {
+
+        $data = [
+            'mailer_success' => 'Successfully send'
+        ];
+        $this->view('visitor/index', $data);
+    }
+
+    public function fail_mailer()
+    {
+        $data = [
+            'mailer_success' => 'Failed to send the email'
+        ];
+        $this->view('visitor/index', $data);
     }
 }
