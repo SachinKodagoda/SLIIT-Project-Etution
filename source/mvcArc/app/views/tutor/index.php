@@ -1,86 +1,229 @@
 <?php require APPROOT . '/views/_includes/_header.php'; ?>
 <style>
-    .button {
-        background-color: #4CAF50;
-        /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        background-color: #e7e7e7;
-        color: black;
-    }
-
     body {
-        background-color: rgba(0, 0, 0, 0.5);
+        background: #F1F1F1;
     }
 
-    input[type=button] {
-        width: 10%;
-        background-color: #4CAF50;
+    .lecturer_leftMenu {
+        background: #fff;
+        width: 360px;
+        height: calc(100vh - 40px);
+        float: left;
+        margin: 20px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+
+    .lecturer_rightMenu {
+        background: #fff;
+        width: calc(100% - 440px);
+        height: calc(100vh - 40px);
+        float: left;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        margin: 20px;
+        border-radius: 10px;
+        padding: 10px;
+        overflow: auto;
+    }
+
+    .lecturer_input {
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        padding: .5rem;
+    }
+
+    .lecturer_input:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+    }
+
+    .lecturer_form {
+        max-width: 300px;
+        height: auto;
+        display: block;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .leturer_input_group {
+        margin-bottom: 10px
+    }
+
+    .lecturer_submit {
+        display: inline-block;
+        width: 100%;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        color: #fff;
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        margin-bottom: .5rem;
+        margin-top: 1rem;
+    }
+
+    .lecturer_submit:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .lecturer_submit:active {
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
+        background-color: #0062cc;
+        border-color: #005cbf;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    table#t01 tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    table#t01 tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    table#t01 th {
+        background-color: black;
         color: white;
-        padding: 0.5px 0.5px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 720px) {
+        .lecturer_leftMenu {
+            width: calc(100% - 40px);
+        }
+
+        .lecturer_rightMenu {
+            width: calc(100% - 40px);
+        }
     }
 </style>
 </head>
 
+<?php
+
+if (isset($_FILES["videoToUpload"]["name"])) {
+    $target_dir = PUBROOT . "\\public\\img\\uploads\\video\\";
+    $target_file = $target_dir . basename($_FILES["videoToUpload"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $uploadOk = 1;
+    $errorMsg = '';
+
+    if (
+        $imageFileType != "mp4"
+    ) {
+        $errorMsg = $errorMsg . "mp4 only can be uploaded." . "<br/> ";
+        $uploadOk = 0;
+    }
+
+    if (file_exists($target_file)) {
+        $errorMsg = $errorMsg . "file already exists." . "<br/> ";
+        $uploadOk = 0;
+    }
+
+    if ($uploadOk != 0) {
+        if (move_uploaded_file($_FILES["videoToUpload"]["tmp_name"], $target_file)) {
+            $errorMsg = $errorMsg . "The file " . basename($_FILES["videoToUpload"]["name"]) . " has been uploaded." . "<br/> ";
+
+            // if ($this->adminModel->update_a_user_img_path($_SESSION['user_id'], basename($_FILES["videoToUpload"]["name"]))) {
+            //     $_SESSION['user_img'] = basename($_FILES["videoToUpload"]["name"]);
+            // } else {
+            //     $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
+            // }
+        } else {
+            $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
+        }
+    } else {
+        $errorMsg = $errorMsg . "Sorry, file is not uploaded." . "<br/> ";
+    }
+}
+
+?>
+
 <body>
 
-    <div class="row">
-        <div>
-            <img src="img/tutor/web.jpg" width="90%" style="padding: 10px 5%">
-            <h1 style="padding: 0px 5%;margin-top: -10px">Web Technology</h1>
-            <h3 style="padding: 0px 5%;margin-top: -10px">Web development is the work involved in developing a web site for the Internet or an intranet.<br>
-                Web development can range from developing a simple single static page of plain text to complex web-based internet applications, electronic businesses, <br>
-                and social network services.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/web',true)">
-            <a href="web.html"></a>
+    <div class="clearfix">
+
+        <div class="lecturer_leftMenu">
+            <form class="lecturer_form" action="<?php echo URLROOT; ?>/tutor" method="post" enctype="multipart/form-data">
+                <div class="leturer_input_group">
+                    <label for="lec_subject">Subject</label>
+                    <input type="text" class="lecturer_input" name="lec_subject">
+                </div>
+                <div class="leturer_input_group">
+                    <label for="lec_subject">Description</label>
+                    <input type="text" class="lecturer_input" name="lec_desc">
+                </div>
+                <div class="leturer_input_group">
+                    <label for="lec_subject">Upload</label>
+                    <input type="file" class="lecturer_input" name="videoToUpload">
+                </div>
+                <input type="submit" value="Upload Image" name="submit" class="lecturer_submit">
+                <?php echo $errorMsg ?>
+            </form>
+
         </div>
-    </div>
-    <div class="row">
-        <div>
-            <img src="img/tutor/sys.jpg" width="90%" style="padding: 10px 5%">
-            <h1 style="padding: 0px 5%;margin-top: -10px">Information System Communication</h1>
-            <h3 style="padding: 0px 5%;margin-top: -10px">Communication and Information System, Master. Communication and Information System focuses on information processing and communication system,<br>
-                using mathematical method and computer technology as the main tool, studies a variety of information processing, modern digital communication and <br>
-                broadband network technologies.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/sys',true)">
+        <div class="lecturer_rightMenu">
+            <table id="t01">
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Eve</td>
+                    <td>Jackson</td>
+                    <td>94</td>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>80</td>
+                </tr>
+            </table>
         </div>
+
     </div>
-    <div class="row">
-        <div>
-            <img src="img/tutor/ict.jpg" width="90%" style="padding: 10px 5%">
-            <h1 style="padding: 0px 5%;margin-top: -10px">Network</h1>
-            <h3 style="padding: 0px 5%;margin-top: -10px">A computer network is a digital telecommunications network which allows nodes to share resources. In computer networks, computing devices exchange<br>
-                data with each other using connections between nodes. </h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/net',true)">
-        </div>
-    </div>
-    <div class="row">
-        <div>
-            <img src="img/tutor/std.jpg" width="90%" style="padding: 10px 5%">
-            <h1 style="padding: 0px 5%;margin-top: -10px">Introduction Programming Languages</h1>
-            <h3 style="padding: 0px 5%;margin-top: -10px">Introduction to Programming Languages. A computer is a computational device which is used to process the data under the control of a computer program.<br>
-                Program is a sequence of instruction along with data. ... Between high-level language and machine language there are assembly language also called <br>
-                olic machine code.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -50px" onclick="navFunction('<?php echo URLROOT ?>/tutor/ip',true)">
-        </div>
-    </div>
-    <div class="row">
-        <div>
-            <img src="img/tutor/cyber.jpg" width="90%" style="padding: 10px 5%">
-            <h1 style="padding: 0px 5%;margin-top: -10px">Cyber Security</h1>
-            <h3 style="padding: 0px 5%;margin-top: -10px">Cybersecurity refers to a set of techniques used to protect the integrity of networks, programs and data from attack, damage or unauthorized access.<br>
-                The use of cyber security can help prevent cyber attacks, data breaches, and identity theft and can aid in risk management.</h3>
-            <input type="button" value="View" class="button" style="float: right;margin-right: 5%;margin-top: -30px" onclick="navFunction('<?php echo URLROOT ?>/tutor/cyber',true)">
-        </div>
-    </div>
+
+
 
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>

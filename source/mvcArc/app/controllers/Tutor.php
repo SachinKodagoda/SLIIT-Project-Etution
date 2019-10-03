@@ -53,4 +53,9 @@ class Tutor extends BaseController
         ];
         $this->view('tutor/reserve', $data);
     }
+
+    public function uploadFiles()
+    {
+        
+    }
 }

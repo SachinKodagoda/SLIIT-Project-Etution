@@ -35,7 +35,7 @@
             <div>
                 <!-- <input type="submit" value="Login" class="form_submit_btn"><br /> -->
                 <div class="form_submit_btn" onclick="submitForm()">Login</div>
-                <div class="form_login_btn_cover">Don't you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/register',false)" class="form_login_btn" style="cursor:pointer;">Register</span></div>
+                <div class="form_login_btn_cover">Don't you have an account? <span onclick="navFunction('<?php echo URLROOT ?>/user/register',true)" class="form_login_btn" style="cursor:pointer;">Register</span></div>
             </div>
         </form>
     </div>

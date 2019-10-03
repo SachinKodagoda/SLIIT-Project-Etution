@@ -210,7 +210,7 @@ class User extends BaseController
                 redirect('admin');
                 break;
             case 'lecturer':
-                redirect('user/index');
+                redirect('tutor/index');
                 break;
             case 'customer_agent':
                 redirect('user/index');
