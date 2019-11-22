@@ -79,6 +79,9 @@ class AdminModel
     // UPDATE A USER -----------------------------------------------
     public function update_a_user($data)
     {
+
+        // echo $data['password'];
+        // die();
         if (empty($data['password'])) {
             $this->db->query("UPDATE users SET name =:name, email=:email , userType =:userType , country =:country WHERE id = :id");
             $this->db->bind(':name', $data['name']);

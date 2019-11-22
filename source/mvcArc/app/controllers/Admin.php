@@ -23,6 +23,101 @@ class Admin extends BaseController
         $this->view('admin/index', $data);
     }
 
+    public function admin_delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->adminModel->delete_a_user($id)) {
+                flash('delete_message', 'User Succesfully Deleted');
+                redirect('admin/admin');
+                // $this->member();
+            } else {
+                flash('delete_message', 'User is not Deleted');
+                redirect('admin/admin');
+                // $this->member();
+            }
+        } else {
+            redirect('admin/admin');
+            // $this->member();
+        }
+    }
+
+    public function admin_edit($id)
+    {
+        $users = $this->adminModel->get_a_user($id, 'admin');
+        // CHECK THE POST METHOD OR GET METHOD
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // CHECK WHETHER THE REQUEST IS SENT FROM THE EDIT FORM
+            if (isset($_POST['name'])) {
+
+                $data = [
+                    'name' => trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'type' => trim($_POST['type']),
+                    'member_id' => $id,
+                    'country' => trim($_POST['country']),
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
+
+                if (empty($data['email'])) {
+                    $data['member_email_err'] = 'email cannot be a empty value';
+                }
+
+                if (empty($data['name'])) {
+                    $data['member_name_err'] = 'Name cannot be a empty value';
+                }
+
+                if (empty($data['member_email_err']) && empty($data['member_name_err'])) {
+
+                    if (!empty($data['password'])) {
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    }
+
+                    if ($this->adminModel->update_a_user($data)) {
+                        flash('update_success', 'Successfully Member Updated');
+                        $this->index();
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+                    $this->view('admin/admin_edit', $data);
+                }
+            } else {
+                $data = [
+                    'member_id' => $id,
+                    'country' => $users->country,
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
+                $this->view('admin/admin_edit', $data);
+            }
+        }
+    }
+
+    public function admin_change_state($id)
+    {
+        $user = $this->adminModel->get_a_user($id, 'admin');
+        $newStatus = $user->active_status == 1 ? 0 : 1;
+        if ($this->adminModel->activate_a_user($id, $newStatus)) {
+            flash('update_success', 'Successfully Member Status Changed');
+            $this->index();
+        } else {
+            die('Something went wrong');
+        }
+    }
+
     public function index_file()
     {
 
@@ -113,9 +208,9 @@ class Admin extends BaseController
     public function status_change()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if($this->adminModel->update_a_user_onlineStatus($_SESSION['user_id'],$_POST['onlineStatus'])){
+            if ($this->adminModel->update_a_user_onlineStatus($_SESSION['user_id'], $_POST['onlineStatus'])) {
                 $this->index();
-            }else{
+            } else {
                 $this->index();
             }
         }
@@ -183,7 +278,9 @@ class Admin extends BaseController
                 }
 
                 if (empty($data['member_email_err']) && empty($data['member_name_err'])) {
-                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    if (!empty($data['password'])) {
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    }
 
                     if ($this->adminModel->update_a_user($data)) {
                         flash('update_success', 'Successfully Member Updated');
@@ -232,6 +329,69 @@ class Admin extends BaseController
         ];
         $this->view('admin/lecturer', $data);
     }
+    public function lecturer_edit($id)
+    {
+        $users = $this->adminModel->get_a_user($id, 'lecturer');
+        // CHECK THE POST METHOD OR GET METHOD
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // CHECK WHETHER THE REQUEST IS SENT FROM THE EDIT FORM
+            if (isset($_POST['name'])) {
+
+                $data = [
+                    'name' => trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'type' => trim($_POST['type']),
+                    'member_id' => $id,
+                    'country' => trim($_POST['country']),
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
+
+                if (empty($data['email'])) {
+                    $data['member_email_err'] = 'email cannot be a empty value';
+                }
+
+                if (empty($data['name'])) {
+                    $data['member_name_err'] = 'Name cannot be a empty value';
+                }
+
+                if (empty($data['member_email_err']) && empty($data['member_name_err'])) {
+                    if (!empty($data['password'])) {
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    }
+
+                    if ($this->adminModel->update_a_user($data)) {
+                        flash('update_success', 'Successfully Member Updated');
+                        $this->lecturer();
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+                    $this->view('admin/lecturer_edit', $data);
+                }
+            } else {
+                $data = [
+                    'member_id' => $id,
+                    'country' => $users->country,
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
+                $this->view('admin/lecturer_edit', $data);
+            }
+        }
+    }
     public function lecturer_delete($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -246,6 +406,8 @@ class Admin extends BaseController
             redirect('admin/lecturer');
         }
     }
+
+
     public function lecturer_change_state($id)
     {
         $user = $this->adminModel->get_a_user($id, 'lecturer');
@@ -265,6 +427,69 @@ class Admin extends BaseController
             'agent' => $users
         ];
         $this->view('admin/agent', $data);
+    }
+    public function agent_edit($id)
+    {
+        $users = $this->adminModel->get_a_user($id, 'customer_agent');
+        // CHECK THE POST METHOD OR GET METHOD
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // CHECK WHETHER THE REQUEST IS SENT FROM THE EDIT FORM
+            if (isset($_POST['name'])) {
+
+                $data = [
+                    'name' => trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'type' => trim($_POST['type']),
+                    'member_id' => $id,
+                    'country' => trim($_POST['country']),
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
+
+                if (empty($data['email'])) {
+                    $data['member_email_err'] = 'email cannot be a empty value';
+                }
+
+                if (empty($data['name'])) {
+                    $data['member_name_err'] = 'Name cannot be a empty value';
+                }
+
+                if (empty($data['member_email_err']) && empty($data['member_name_err'])) {
+                    if (!empty($data['password'])) {
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    }
+
+                    if ($this->adminModel->update_a_user($data)) {
+                        flash('update_success', 'Successfully Member Updated');
+                        $this->agent();
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+                    $this->view('admin/agent_edit', $data);
+                }
+            } else {
+                $data = [
+                    'member_id' => $id,
+                    'country' => $users->country,
+                    'member_name' => $users->name,
+                    'member_email' => $users->email,
+                    'member_userType' => $users->userType,
+                    'member_password' => '',
+                    'member_name_err' => '',
+                    'member_email_err' => '',
+                    'member_password_err' => '',
+                ];
+                $this->view('admin/agent_edit', $data);
+            }
+        }
     }
     public function agent_delete($id)
     {
@@ -287,7 +512,7 @@ class Admin extends BaseController
         $newStatus = $user->active_status == 1 ? 0 : 1;
         if ($this->adminModel->activate_a_user($id, $newStatus)) {
             flash('update_success', 'Successfully Agent Status Changed');
-            $this->lecturer();
+            $this->agent();
         } else {
             die('Something went wrong');
         }

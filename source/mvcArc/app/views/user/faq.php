@@ -1,25 +1,31 @@
 <?php require APPROOT . '/views/_includes/_header.php'; ?>
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/user.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/vendor/css/styles.css" />
+<script src="<?php echo URLROOT ?>/vendor/js/js.js"></script>
 </head>
 
 <body>
 
     <?php require APPROOT . '/views/_includes/_navbar.php'; ?>
-    <img class="body-logo" src="img/user/nat-8.jpg">
-    <h1>Are you in a Trouble? We are here to help you. </h1>
+    <!-- <div class="topnav">
+        <a href=""> Home </a>
+        <a href=""> News</a>
+        <a href=""> FAQ's </a>
+        <a href=""> About Us</a>
+    </div> -->
+
+    <br>
+
+    <img id="img1" class="img" src="<?php echo URLROOT ?>/img/user/help1.jpg">
+
+    <button id="btn1" class="btn1" onclick="loadData1()"></button>
+    <button id="btn2" class="btn2" onclick="loadData2()"></button>
+
+    <br>
+
+
+
     <h3 class="edit1"> Frequently Asked Questions</h3>
-
-    <div class="search-all">
-        <input class="search-text" type="text">
-        <button class="search-button">Search </button>
-    </div>
-
-    <hr class="line">
-    <hr />
-
-    <img class="advertise1" src="images/advertise1.jpg">
-    <img class="advertise2" src="images/advertise2.jpg">
 
     <div class="column middle">
         <a href="" class="question"> How to Register? </a>
@@ -76,11 +82,41 @@
         It's dependent but most of the time individual vedio session is more cost than Group sessions.
     </div>
 
+    <br>
 
-    <div class="container" style="align:center">
-        <img class="gif" src="/img/user/pic.gif" alt="pic.gif">
+    <div>
+        <img src="<?php echo URLROOT ?>/img/user/pic.png" class="img22" </div> <div class="form-all">
+        <form method="get" action="action_submit.php">
 
-        <a class="btn" href="submit.html">Still Needs Help? </a>
+            Name:<br>
+            <img class="form-img" src="<?php echo URLROOT ?>/img/user/name.jpg">
+            <input class="form-input" type="text" placeholder="First" name="fname"> &nbsp;
+            <input class="form-input" type="text" placeholder="Last" name="lname">
+            <br><br>
+
+            Email:<br>
+            <img class="form-img" src="<?php echo URLROOT ?>/img/user/email.jpg">
+            <input class="form-email" type="email" name="email">
+            <br><br>
+
+            Telephone:<br>
+            <img class="form-img" src="<?php echo URLROOT ?>/img/user/tel.jpg">
+            <input class="form-code" type="tel" placeholder="Country-code" name="phone1">
+            <input class="form-tel" type="text" placeholder="Phone Number" name="phone2">
+            <br><br>
+
+            Message:<br>
+            <img class="form-img" src="<?php echo URLROOT ?>/img/user/message.jpg">
+            <input class="form-message" type="text" name="msg">
+            <br><br>
+
+            <input class="form-submit" type="submit" value="Submit">
+        </form>
     </div>
 
+
+
+    </span>
+
+    </div>
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>

@@ -37,6 +37,8 @@
                             <option value="advertiser_agent" <?php echo $data['member_userType'] == 'advertiser_agent' ? 'selected' : '' ?>>Advertiser Agent</option>
                             <option value="visitor" <?php echo $data['member_userType'] == 'visitor' ? 'selected' : '' ?>>Visitor</option>
                             <option value="developer" <?php echo $data['member_userType'] == 'developer' ? 'selected' : '' ?>>Developer</option>
+                            <option value="lecturer" <?php echo $data['member_userType'] == 'lecturer' ? 'selected' : '' ?>>Lecturer</option>
+                            <option value="customer_agent" <?php echo $data['member_userType'] == 'customer_agent' ? 'selected' : '' ?>>Customer Agent</option>
                         </select>
                     </div>
 

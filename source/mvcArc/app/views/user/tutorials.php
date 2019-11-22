@@ -76,131 +76,142 @@
         background-color: #242939;
         color: white;
     }
+
+    .tuto_modal {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0);
+    }
+
+    .video_cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal_close {
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: -20px;
+        top: -20px
+    }
 </style>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/vendor/css/grt-youtube-popup.css">
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "iwt";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT video_id,subject,description,video_path,dummy_path FROM video_data;";
+$result1 = $conn->query($sql);
+$rows = [];
+while ($row = mysqli_fetch_assoc($result1)) {
+    $rows[] = $row;
+}
+?>
+<script>
+    var js_data = '<?php echo json_encode($rows); ?>';
+    var js_obj_data = JSON.parse(js_data);
+    var bySubject = js_obj_data.slice(0);
+    bySubject.sort((a, b) => (a.subject > b.subject) ? 1 : -1);
+</script>
 </head>
+
+<?php
+
+$conn->close();
+?>
 
 <body>
     <?php require APPROOT . '/views/_includes/_navbar.php'; ?>
     <div class="topic1"> Tutorials </div>
     <div>
-        <form action="" method="POST">
-            <input type="text" class="input_search" />
-        </form>
+        <input type="text" class="input_search" onkeyup="myFunction()" id="input_search" autocomplete="off" />
     </div>
+    <div class="tuto_modal" id="tuto_modal">
 
-    <div class="flex-container">
-        <div class="topic2">C++ tutorials</div>
-        <div class="item_x youtube-link" youtubeid="OTroAxvRNbw">
-            <img src="http://img.youtube.com/vi/OTroAxvRNbw/0.jpg">
-            <div class="item_x_description_x">1) C++ Introduction</div>
+        <div class="video_cover">
+            <div class="modal_close" onclick="modalClose()">X</div>
+            <video width="400" id="tuto_video" controls>
+                <!-- <source src="<?php echo URLROOT . "/public/img/uploads/video/" ?>mov_bbb.mp4" type="video/mp4">
+                <source src="mov_bbb.ogg" type="video/ogg">
+                Your browser does not support HTML5 video. -->
+            </video>
         </div>
-        <div class="item_x youtube-link" youtubeid="h4kUiFOb_v0">
-            <img src="http://img.youtube.com/vi/h4kUiFOb_v0/0.jpg">
-            <div class="item_x_description_x">2) OOP Introduction</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="UOB7-B2MfwA">
-            <img src="http://img.youtube.com/vi/UOB7-B2MfwA/0.jpg">
-            <div class="item_x_description_x">3) Smart Pointers</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="HqnVgvBR4pA">
-            <img src="http://img.youtube.com/vi/HqnVgvBR4pA/0.jpg">
-            <div class="item_x_description_x">4) Friend function</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="hAA8FBq2bA4">
-            <img src="http://img.youtube.com/vi/hAA8FBq2bA4/0.jpg" youtubeid="hAA8FBq2bA4">
-            <div class="item_x_description_x">5) Constructors</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="w35ObkSRq48">
-            <img src="http://img.youtube.com/vi/w35ObkSRq48/0.jpg">
-            <div class="item_x_description_x">6) Pointer to object</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="08QSylWv6jM">
-            <img src="http://img.youtube.com/vi/08QSylWv6jM/0.jpg">
-            <div class="item_x_description_x">7) Stack data structure</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="yKATaptz3Dc">
-            <img src="http://img.youtube.com/vi/yKATaptz3Dc/0.jpg">
-            <div class="item_x_description_x">7) C++ Hello world</div>
-        </div>
-        <div class="topic2">JAVA Tutorials</div>
-        <div class="item_x youtube-link" youtubeid="IsLyduxZ9sc">
-            <img src="http://img.youtube.com/vi/IsLyduxZ9sc/0.jpg">
-            <div class="item_x_description_x">1) Introduction to JAVA</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="-HafzawNlUo">
-            <img src="http://img.youtube.com/vi/-HafzawNlUo/0.jpg">
-            <div class="item_x_description_x">2) OOC Concepts JAVA</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="YEzX3l6PXCk">
-            <img src="http://img.youtube.com/vi/YEzX3l6PXCk/0.jpg">
-            <div class="item_x_description_x">3) Introduction to applets</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="t1-YZ6bF-g0">
-            <img src="http://img.youtube.com/vi/t1-YZ6bF-g0/0.jpg">
-            <div class="item_x_description_x">4) JAVA 8 Streams</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="3YoKVswJsKI">
-            <img src="http://img.youtube.com/vi/3YoKVswJsKI/0.jpg">
-            <div class="item_x_description_x">5) Sockect programming </div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="d3QbptJRln4">
-            <img src="http://img.youtube.com/vi/d3QbptJRln4/0.jpg">
-            <div class="item_x_description_x">6) Java List</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="x-fp3DZRZGA">
-            <img src="http://img.youtube.com/vi/x-fp3DZRZGA/0.jpg">
-            <div class="item_x_description_x">7) Thread priority in JAVA</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="t67UVzc3y6U">
-            <img src="http://img.youtube.com/vi/t67UVzc3y6U/0.jpg" youtubeid="t67UVzc3y6U">
-            <div class="item_x_description_x">8) Format Strings</div>
-        </div>
-        <div class="topic2">JavaScript Tutorials</div>
-        <div class="item_x youtube-link" youtubeid="vEROU2XtPR8">
-            <img src="http://img.youtube.com/vi/vEROU2XtPR8/0.jpg">
-            <div class="item_x_description_x">1) Javascript Fundamentals</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="wc5k2AMPED0">
-            <img src="http://img.youtube.com/vi/wc5k2AMPED0/0.jpg">
-            <div class="item_x_description_x">2) Simple form animation in JavaScript</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="hdI2bqOjy3c">
-            <img src="http://img.youtube.com/vi/hdI2bqOjy3c/0.jpg">
-            <div class="item_x_description_x">3) Simple form animation in JavaScript</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="0ik6X4DJKCc">
-            <img src="http://img.youtube.com/vi/0ik6X4DJKCc/0.jpg">
-            <div class="item_x_description_x">4)JavaScript DOM</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="Q6bY3FvBxMk">
-            <img src="http://img.youtube.com/vi/Q6bY3FvBxMk/0.jpg">
-            <div class="item_x_description_x">5)Why learn JavaScript</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="mgrAmgejz8A">
-            <img src="http://img.youtube.com/vi/mgrAmgejz8A/0.jpg">
-            <div class="item_x_description_x">6) Encription in JavaScript</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="Z6O_XdfCBEo">
-            <img src="http://img.youtube.com/vi/Z6O_XdfCBEo/0.jpg">
-            <div class="item_x_description_x">7) Switch statements</div>
-        </div>
-        <div class="item_x youtube-link" youtubeid="rjVzGpSxgZQ">
-            <img src="http://img.youtube.com/vi/rjVzGpSxgZQ/0.jpg">
-            <div class="item_x_description_x">8) Java Script Functions</div>
-        </div>
+
+
     </div>
 
 
 
+    <div class="flex-container" id="video_container"></div>
     </div>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
-    <script src="grt-youtube-popup.js"></script>
-    <script src="<?php echo URLROOT ?>/vendor/js/grt-youtube-popup.js" type="text/javascript" charset="utf-8"></script>
     <script>
-        $(".youtube-link").grtyoutube({
-            autoPlay: true,
-            theme: "dark"
-        });
+        var video_container = document.getElementById('video_container');
+        var input_search = document.getElementById('input_search');
+        var tuto_modal = document.getElementById('tuto_modal');
+        tuto_modal.style.display = "none";
+        bySubject.forEach(addItem);
+
+        var topic = '';
+        var counterx;
+
+        function addItem(item, index) {
+            if (item['subject'] != topic) {
+                topic = item['subject'];
+                video_container.innerHTML += "<div class='topic2'>" + item['subject'] + "</div>";
+                counterx = 0;
+            };
+            counterx++;
+            video_container.innerHTML += "<div class='item_x youtube-link'><img src='<?php echo URLROOT . "/public/img/uploads/"?>"+item['dummy_path'] +"' onclick=\'loadVideo(" + "\"" + item['video_path'] + "\"" + ")\'><div class='item_x_description_x'>" + counterx + ") " + item['description'] + "</div></div>";
+        }
+
+        function myFunction() {
+            video_container.innerHTML = '';
+
+            if (input_search.value == '') {
+                counterx = 0;
+                topic = ''
+                bySubject.forEach(addItem);
+            } else {
+                var flycount = 1;
+                for (var i = 0; i < bySubject.length; i++) {
+                    if (input_search.value.toLowerCase() == bySubject[i]['subject']) {
+                        video_container.innerHTML += "<div class='item_x youtube-link'><img src='<?php echo URLROOT . "/public/img/uploads/"?>"+bySubject[i]['dummy_path'] +"' onclick=\'loadVideo(" + "\"" + bySubject[i]['video_path'] + "\"" + ")\'><div class='item_x_description_x'>" + flycount + ") " + bySubject[i]['description'] + "</div></div>";
+                        flycount++;
+                    }
+                }
+            }
+
+        }
+
+        function loadVideo(link) {
+            var video = document.getElementById('tuto_video');
+            video.innerHTML = "";
+            var source = document.createElement('source');
+            var linkx = "<?php echo URLROOT . "/public/img/uploads/video/" ?>" + link;
+            source.setAttribute('src', linkx);
+            video.appendChild(source);
+            video.load();
+            // video.play();
+            modalOpen();
+        }
+
+        function modalClose() {
+            tuto_modal.style.display = "none";
+        }
+
+        function modalOpen() {
+            tuto_modal.style.display = "block";
+        }
     </script>
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>

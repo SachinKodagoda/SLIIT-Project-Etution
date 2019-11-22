@@ -68,7 +68,7 @@
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody></tbody>
                                     <?php foreach ($data['admins'] as $userData) : ?>
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo $userData->id; ?></td>
@@ -77,19 +77,19 @@
                                             <td class="center"><?php echo date("Y-M", strtotime($userData->created_at)); ?></td>
                                             <td class="center"><?php echo $userData->country; ?></td>
                                             <td class="center">
-                                                <form id="editFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_edit/<?php echo $userData->id; ?>" method="post">
+                                                <form id="editFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/admin_edit/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
                                                     <button class="table_btn btn_blue" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')">
                                                         <i class="fa fa-edit icon_margin"></i>Edit
                                                     </button>
                                                 </form>
-                                                <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_delete/<?php echo $userData->id; ?>" method="post">
+                                                <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/admin_delete/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
                                                     <button class="table_btn btn_red" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')">
                                                         <i class="fa fa-pencil icon_margin"></i>Delete
                                                     </button>
                                                 </form>
-                                                <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/member_change_state/<?php echo $userData->id; ?>" method="post">
+                                                <form id="deleteFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/admin_change_state/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
                                                     <button class="table_btn btn_red <?php echo $userData->active_status == 1 ? 'status_active' : 'status_disabled' ?>" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')" style="width:100px;">
                                                         <?php

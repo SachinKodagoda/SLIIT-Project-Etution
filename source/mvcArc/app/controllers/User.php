@@ -163,13 +163,12 @@ class User extends BaseController
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
                 if ($loggedInUser) {
-                    if($loggedInUser->active_status == 1){
+                    if ($loggedInUser->active_status == 1) {
                         $this->createUserSession($loggedInUser);
-                    }else{
+                    } else {
                         $data['password_err'] = 'User has been Deactivated.<br/> Please Contact the Admin';
                         $this->view('user/login', $data);
                     }
-                    
                 } else {
                     $data['password_err'] = 'Password incorrect';
 

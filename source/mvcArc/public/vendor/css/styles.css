@@ -1,149 +1,212 @@
+body{ 
+	background-color: #ffffff;
+}
+
+* {box-sizing: border-box}
+
+		
+
+
+.img{
+
+height:500px;
+width :100%;
+opacity:0.6;
+}
+
+.img22{
+	width:1480px;
+}
+
+.btn1{
+height:20px;
+width:20px;	
+border-radius:44%;
+position:centre;
+bottom: 30px;
+left:660px;
+background-color:white;
+border:4px solid black;
+
+	
+}
+
+.btn2{
+height:20px;
+width:20px;	
+border-radius:44%;
+position:center;
+bottom: 30px;
+left:661px;
+background-color:white;
+border:4px solid black;
+
+	
+}
+
+.btn1:hover, .btn1:focus
+{
+background-color:black;
+border:4px solid white;
+}	
+
+.btn2:hover, .btn2:focus
+{
+background-color:black;
+border:4px solid white;
+}
+
+
 body {
-
-  background-color: #F2F3F4;
-
-}
-
-h1 {
-  font-family: Amazone BT;
-  font-size: 60px;
-  font-weight: bold;
-  color: red;
-  position: relative;
+	
+  	background-color: #F2F3F4;
 
 }
 
-h2 {
-  font-family: Belwe Cn BT;
-  font-size: 50px;
-  color: purple;
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
 }
 
-h3 {
-  font-family: ArnoldBoeD;
-  background-color: rgba(192, 192, 192, 0.3);
-  font-size: 30px;
-  font-weight: italic;
-  color: #0400B4;
-  position: center;
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
-.line {
-  border: 2px solid black;
-  border-radius: 10px;
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
 }
 
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+  
 .column.middle {
-  background-color: #F5F5DC;
-  width: 1100px;
+  background-color:#d1e0e0;
+  width: 1300px;
   border: 5px solid black;
   padding: 20px;
-  margin: 0px;
-
+  margin-left:120px;
+  text-align:left;
 }
 
 
 
+}
 
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
+.body-logo	{
+position:absolute;
+right:100px;	
+top:50px;
+width:200px;
+height:100px;	
+	
+}
+
+.form-all	{
+text-align:left;
+font-size:20px;
+font-weight:bold;
+background-color:#4d79ff;
+color:black;
+padding-left:450px;
+padding-top: 30px;
+margin:20px;
+width: 1480px;
+height:550px;
+border-radius:10px;
+}
+
+.form-img	{
+width:25px;	
+height:25px;
+
+}
+h1 {
+font-family: Belwe Cn BT;
+font-size: 50px;
+color: purple;	
+}
+
+.form-input	{
+width:245px;	
+height:35px;
+border-radius:10px;	
+}
+
+.form-email {
+width:500px;	
+height:35px;	
+border-radius:10px;		
+}
+
+.form-code {
+width:70px;	
+height:35px;	
+border-radius:10px;		
+}
+
+.form-tel {
+width:420px;	
+height:35px;	
+border-radius:10px;		
+}
+
+.form-message {
+width:500px;	
+height:150px;
+border-radius:10px;	
+	
+}
+
+.form-submit {
+width:150px;	
+height:50px;	
+background-color: black;
+color:white;
+font-size:16px;
+display:block;
+position:absolute;
+border-radius:10px;	
+margin-left:200px;
+}
+
+.form-submit:hover{
+background-color:grey;
+color:white;
 }
 
 
-
-.container .btn {
-  position: absolute;
-  left: 400px;
-  bottom: 200px;
-  width: 300px;
-  background-color: black;
-  color: white;
-  font-size: 25px;
-  padding: 16px 30px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-
+a.question	{
+text-decoration:none;	
+color:black;
+font-size:20px;	
+font-weight:bold;
+	
 }
 
-.container .btn:hover {
-  background-color: green;
-  color: black;
+a.question:hover{
+background-color:black;
+color:white;
 }
 
-.edit1 {
-  width: 28%;
-
+.edit1{
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:white;
+background-color: black;
 }
 
-a.question {
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
 
-}
-
-a.question:hover {
-  background-color: black;
-  color: white;
-
-}
-
-.search-all {
-  position: absolute;
-  right: 0px;
-  top: 160px;
-
-}
-
-.search-text {
-  width: 250px;
-  height: 24px;
-
-}
-
-.search-button {
-  width: 100px;
-  height: 30px;
-  font-size: 14px;
-
-}
-
-.gif {
-  height: 340px;
-  width: 400px;
-
-}
-
-.advertise1 {
-  position: absolute;
-  right: 0px;
-  top: 240px;
-  width: 360px;
-  height: 500px;
-
-}
-
-.advertise2 {
-  position: absolute;
-  right: 0px;
-  top: 740px;
-  width: 360px;
-  height: 640px;
-
-}
-
-.body-logo {
-  position: absolute;
-  right: 100px;
-  top: 50px;
-  width: 200px;
-  height: 100px;
-
-}
+.

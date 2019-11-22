@@ -33,7 +33,8 @@
                                         <th>ID</th>
                                         <th>NAME</th>
                                         <th>EMAIL</th>
-                                        <th>USER TYPE</th>
+                                        <th>CREATE</th>
+                                        <th>COUNTRY</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
@@ -43,10 +44,9 @@
                                             <td class="center"><?php echo $userData->id; ?></td>
                                             <td class="center"><?php echo $userData->name; ?></td>
                                             <td class="center"><?php echo $userData->email; ?></td>
-                                            <td class="center"><?php echo $userData->userType; ?></td>
+                                            <td class="center"><?php echo date("Y-M", strtotime($userData->created_at)); ?></td>
+                                            <td class="center"><?php echo $userData->country; ?></td>
                                             <td class="center">
-
-
                                                 <form id="editFormID_<?php echo $userData->id; ?>" class="delete_button_form" action="<?php echo URLROOT; ?>/admin/lecturer_edit/<?php echo $userData->id; ?>" method="post">
                                                     <!-- <input type="submit" class="table_btn btn_red" value="Delete"> -->
                                                     <button class="table_btn btn_blue" onclick="submitMe('deleteFormID_<?php echo $userData->id; ?>')">

@@ -109,6 +109,7 @@
         text-align: left;
     }
 
+
     table#t01 tr:nth-child(even) {
         background-color: #eee;
     }
@@ -135,43 +136,83 @@
 </head>
 
 <?php
-
-if (isset($_FILES["videoToUpload"]["name"])) {
-    $target_dir = PUBROOT . "\\public\\img\\uploads\\video\\";
-    $target_file = $target_dir . basename($_FILES["videoToUpload"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    $uploadOk = 1;
-    $errorMsg = '';
-
-    if (
-        $imageFileType != "mp4"
-    ) {
-        $errorMsg = $errorMsg . "mp4 only can be uploaded." . "<br/> ";
-        $uploadOk = 0;
-    }
-
-    if (file_exists($target_file)) {
-        $errorMsg = $errorMsg . "file already exists." . "<br/> ";
-        $uploadOk = 0;
-    }
-
-    if ($uploadOk != 0) {
-        if (move_uploaded_file($_FILES["videoToUpload"]["tmp_name"], $target_file)) {
-            $errorMsg = $errorMsg . "The file " . basename($_FILES["videoToUpload"]["name"]) . " has been uploaded." . "<br/> ";
-
-            // if ($this->adminModel->update_a_user_img_path($_SESSION['user_id'], basename($_FILES["videoToUpload"]["name"]))) {
-            //     $_SESSION['user_img'] = basename($_FILES["videoToUpload"]["name"]);
-            // } else {
-            //     $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
-            // }
-        } else {
-            $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
-        }
-    } else {
-        $errorMsg = $errorMsg . "Sorry, file is not uploaded." . "<br/> ";
-    }
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "iwt";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
+$errorMsg = '';
+if (isset($_POST["lecturer_submit_upload"])) {
+    if ($_POST["lec_subject"] != "" && $_POST["lec_desc"] != "") {
+        if ($_FILES["videoToUpload"]["name"] != "") {
+            if (isset($_FILES["videoToUpload"]["name"])) {
+                $target_dir = PUBROOT . "\\public\\img\\uploads\\video\\";
+                $target_file = $target_dir . basename($_FILES["videoToUpload"]["name"]);
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                $uploadOk = 1;
+                $errorMsg = '';
+
+                if (
+                    $imageFileType != "mp4"
+                ) {
+                    $errorMsg = $errorMsg . "mp4 only can be uploaded." . "<br/> ";
+                    $uploadOk = 0;
+                }
+
+                if (file_exists($target_file)) {
+                    $errorMsg = $errorMsg . "file already exists." . "<br/> ";
+                    $uploadOk = 0;
+                }
+
+                if ($uploadOk != 0) {
+                    if (move_uploaded_file($_FILES["videoToUpload"]["tmp_name"], $target_file)) {
+                        // if ($this->adminModel->update_a_user_img_path($_SESSION['user_id'], basename($_FILES["videoToUpload"]["name"]))) {
+                        //     $_SESSION['user_img'] = basename($_FILES["videoToUpload"]["name"]);
+                        // } else {
+                        //     $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
+                        // }
+                        // if($_FILES["imgToUpload"]["name"] != ""){
+                        //     $target_dir = PUBROOT . "\\public\\img\\uploads\\";
+                        //     $target_file = $target_dir . basename($_FILES["imgToUpload"]["name"]);
+                        //     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                        //     $uploadOk = 1;
+                        //     $errorMsg = '';
+                        // }
+                        $sql = "insert into video_data(subject,description,video_path,dummy_path) values("
+                            . "\"" . $_POST["lec_subject"] . "\"" . ","
+                            . "\"" . $_POST["lec_desc"] . "\"" . ","
+                            . "\"" . basename($_FILES["videoToUpload"]["name"]) . "\"" . ","
+                            . "\"" . "player.jpg" . "\"" . ");";
+                        $result2 = $conn->query($sql);
+                        $errorMsg = $errorMsg . "The file " . basename($_FILES["videoToUpload"]["name"]) . " has been uploaded." . "<br/> ";
+                    } else {
+                        $errorMsg = $errorMsg . "Sorry, Something went wrong" . "<br/> ";
+                    }
+                } else {
+                    $errorMsg = $errorMsg . "Sorry, file is not uploaded." . "<br/> ";
+                }
+            }
+        }else{
+            $errorMsg = "Sorry, file is not uploaded." . "<br/> ";
+        }
+    }else{
+        $errorMsg = "Sorry, file is not uploaded." . "<br/> ";
+    }
+} else {
+    $errorMsg = '';
+}
+
+$sql = "SELECT video_id,subject,description,video_path,dummy_path FROM video_data;";
+$result1 = $conn->query($sql);
+
+
+
+$conn->close();
+// header("Location: http://www.redirect.to.url.com/");
 ?>
 
 <body>
@@ -185,43 +226,50 @@ if (isset($_FILES["videoToUpload"]["name"])) {
                     <input type="text" class="lecturer_input" name="lec_subject">
                 </div>
                 <div class="leturer_input_group">
-                    <label for="lec_subject">Description</label>
+                    <label for="lec_desc ">Description</label>
                     <input type="text" class="lecturer_input" name="lec_desc">
                 </div>
                 <div class="leturer_input_group">
-                    <label for="lec_subject">Upload</label>
+                    <label for="videoToUpload">Video upload</label>
                     <input type="file" class="lecturer_input" name="videoToUpload">
                 </div>
-                <input type="submit" value="Upload Image" name="submit" class="lecturer_submit">
+                <!-- <div class="leturer_input_group">
+                    <label for="imgToUpload">Image upload</label>
+                    <input type="file" class="lecturer_input" name="imgToUpload">
+                </div> -->
+                <input type="submit" value="Upload Image" name="lecturer_submit_upload" class="lecturer_submit">
                 <?php echo $errorMsg ?>
             </form>
 
         </div>
         <div class="lecturer_rightMenu">
             <table id="t01">
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td>
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>80</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>SUBJECT</th>
+                        <th>DESC</th>
+                        <th>LINK</th>
+                        <th>IMG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($result1->num_rows > 0) {
+                        while ($row = $result1->fetch_assoc()) {
+                            echo "<tr class='odd gradeX'>";
+                            echo "<td class='center'>" . $row["video_id"] . "</td>";
+                            echo "<td class='center'>" . $row["subject"] . "</td>";
+                            echo "<td class='center'>" . $row["description"] . "</td>";
+                            echo "<td class='center'>" . $row["video_path"] . "</td>";
+                            echo "<td class='center'>" . $row["dummy_path"] . "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
-
     </div>
 
 

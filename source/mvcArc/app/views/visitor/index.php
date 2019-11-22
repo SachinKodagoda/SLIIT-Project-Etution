@@ -1,5 +1,37 @@
 <?php require APPROOT . '/views/_includes/_header.php'; ?>
 <link rel="stylesheet" type="text/css" href="<?php echo URLROOT ?>/css/visitor.css" />
+<style>
+    #chati {
+        display: none;
+        position: fixed;
+        bottom: 10px;
+        background: white;
+        padding: 20px;
+        z-index: 999;
+        right: 0;
+        border-radius: 20px 20px 0 20px;
+    }
+
+    .help {
+        position: fixed;
+        z-index: 998;
+        right: 0;
+        bottom: 10px;
+        background: rgba(0, 0, 0, .8);
+        padding: 5px 10px 5px 20px;
+        color: white;
+        border-radius: 50px 0 0 50px;
+    }
+
+    #hideBack{
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        position: fixed;
+        z-index: 997;
+    }
+</style>
 </head>
 
 <body>
@@ -202,7 +234,7 @@
                                 &nbsp;
                             </div>
                             <h4 class="card__heading">
-                                <span class="card__heading-span card__heading-span--3">Life time  (pro) </span>
+                                <span class="card__heading-span card__heading-span--3">Life time (pro) </span>
                             </h4>
                             <div class="card__details">
                                 <ul>
@@ -302,7 +334,7 @@
                             </div>
 
                             <div class="form__group">
-                                <input name="mailer_name" type="text" class="form__input" placeholder="Full name" id="name" required >
+                                <input name="mailer_name" type="text" class="form__input" placeholder="Full name" id="name" required>
                                 <label for="name" class="form__label">Full name</label>
                             </div>
 
@@ -318,7 +350,7 @@
 
                             <div class="form__group u-margin-bottom-medium">
                                 <div class="form__radio-group">
-                                    <input type="radio" class="form__radio-input" id="small" name="mailer_subject" value="Feedback"  checked="checked">
+                                    <input type="radio" class="form__radio-input" id="small" name="mailer_subject" value="Feedback" checked="checked">
                                     <label for="small" class="form__radio-label">
                                         <span class="form__radio-button"></span>
                                         Feedback
@@ -345,6 +377,8 @@
         </section>
     </main>
 
+
+
     <footer class="footer">
         <div class="footer__logo-box">
 
@@ -370,7 +404,7 @@
             </div>
             <div class="col-1-of-2">
                 <p class="footer__copyright">
-                    Built by <a href="https://github.com/SachinKodagoda" class="footer__link">KODAGODA D.G</a>.<br/>
+                    Built by <a href="https://github.com/SachinKodagoda" class="footer__link">KODAGODA D.G</a>.<br />
                     Copyright &copy; SLIIT
                 </p>
             </div>
@@ -406,4 +440,24 @@
             </div>
         </div>
     </div>
+    <div class="help" onclick="popupMe()">Need a help?</div>
+    <div id="hideBack" onclick="popupHide()"></div>
+    <iframe src="https://links.collect.chat/5d998c89f560955c499a547c" width="360" height="450" frameBorder="0" id="chati"></iframe>
+
+    <!-- <button onclick="collectchat.toggle()">Open Chat</button> -->
+    <script>
+        var chati = document.getElementById('chati');
+        var hideback = document.getElementById('hideBack');
+        hideback.style.display = "none";
+
+
+        function popupMe() {
+            hideback.style.display = "block";
+            chati.style.display = "block";
+        }
+        function popupHide() {
+            hideback.style.display = "none";
+            chati.style.display = "none";
+        }
+    </script>
     <?php require APPROOT . '/views/_includes/_footer.php'; ?>
